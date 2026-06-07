@@ -1,7 +1,44 @@
-<!DOCTYPE html><html><head><link rel="stylesheet" href="style.css"><title>News</title></head><body>
-<div class="header"><h1>Economic News</h1></div>
-<div class="tabs">
-    <a href="index.html" class="tab-link">홈</a><a href="market.html" class="tab-link">기술분석</a><a href="news.html" class="tab-link">경제뉴스</a><a href="crypto.html" class="tab-link">코인</a><a href="forex.html" class="tab-link">외환</a><a href="sentiment.html" class="tab-link">심리분석</a><a href="global.html" class="tab-link">글로벌</a><a href="analysis.html" class="tab-link">기업분석</a><a href="predict.html" class="tab-link">예측시장</a><a href="calculator.html" class="tab-link">계산기</a>
-</div>
-<div class="dashboard"><div class="card" style="grid-column: span 2;"><h2>📰 실시간 뉴스</h2><div class="tradingview-widget-container"><script src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>{"colorTheme": "dark", "height": 600}</script></div></div></div>
-</body></html>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Earnings Calendar | 실적발표</title>
+</head>
+<body>
+    <div class="header">
+        <h1>EARNINGS CALENDAR</h1>
+    </div>
+
+    <div class="tabs">
+        <a href="index.html" class="tab-link">시장종합</a>
+        <a href="market.html" class="tab-link">기술분석</a>
+        <a href="news.html" class="tab-link">실적발표</a>
+        <a href="crypto.html" class="tab-link">코인</a>
+        <a href="forex.html" class="tab-link">환율</a>
+        <a href="sentiment.html" class="tab-link">공포지수</a>
+        <a href="global.html" class="tab-link">세계지수</a>
+        <a href="analysis.html" class="tab-link">종목진단</a>
+        <a href="predict.html" class="tab-link">예측시장</a>
+        <a href="calculator.html" class="tab-link">퀀트계산기</a>
+    </div>
+
+    <div class="dashboard">
+        <div class="card" style="grid-column: span 2;">
+            <h2>📅 글로벌 기업 실적 발표 일정</h2>
+            <div class="tradingview-widget-container">
+                <script src="https://s3.tradingview.com/external-embedding/embed-widget-earnings-calendar.js" async>
+                {
+                    "neighborhood": "America",
+                    "displayMode": "regular",
+                    "width": "100%",
+                    "height": "800",
+                    "colorTheme": "dark",
+                    "locale": "kr"
+                }
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
