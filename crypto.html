@@ -14,49 +14,40 @@
         <a href="index.html" class="tab-link">시장종합</a>
         <a href="market.html" class="tab-link">기술분석</a>
         <a href="news.html" class="tab-link">실적발표</a>
-        <a href="crypto.html" class="tab-link">코인</a>
-        <a href="forex.html" class="tab-link">환율</a>
-        <a href="sentiment.html" class="tab-link">공포지수</a>
-        <a href="global.html" class="tab-link">세계지수</a>
-        <a href="analysis.html" class="tab-link">종목진단</a>
-        <a href="predict.html" class="tab-link">예측시장</a>
-        <a href="calculator.html" class="tab-link">퀀트계산기</a>
+        <a href="crypto.html" class="tab-link active">코인</a>
     </div>
 
     <div class="dashboard">
-        <div class="card" style="grid-column: span 2;">
-            <h2>🪙 코인 시가총액/변동성 히트맵</h2>
-            <div class="tradingview-widget-container">
-                <script src="https://s3.tradingview.com/external-embedding/embed-widget-crypto-coins-heatmap.js" async>
-                {
-                    "dataSource": "Crypto",
-                    "blockSize": "market_cap_calc",
-                    "colorTheme": "dark",
-                    "width": "100%",
-                    "height": "600",
-                    "locale": "kr"
-                }
-                </script>
-            </div>
+        <div class="card">
+            <h2>🪙 암호화폐 시장 히트맵 (시가총액 기반)</h2>
+            <div id="crypto-heatmap" class="widget-box"></div>
         </div>
-
-        <div class="card" style="grid-column: span 2;">
-            <h2>📊 암호화폐 실시간 스크리너 (전체 리스트)</h2>
-            <div class="tradingview-widget-container">
-                <script src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
-                {
-                    "width": "100%",
-                    "height": "700",
-                    "defaultColumn": "overview",
-                    "screener_type": "crypto_mcap",
-                    "displayCurrency": "USD",
-                    "colorTheme": "dark",
-                    "locale": "kr",
-                    "isTransparent": false
-                }
-                </script>
-            </div>
+        
+        <div class="card">
+            <h2>📊 코인 실시간 스크리너</h2>
+            <div id="crypto-screener" class="widget-box"></div>
         </div>
     </div>
+
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script type="text/javascript">
+        // 1. 코인 히트맵
+        new TradingView.widget({
+            "container_id": "crypto-heatmap",
+            "width": "100%", "height": "600",
+            "dataSource": "Crypto",
+            "blockSize": "market_cap_calc",
+            "colorTheme": "dark", "locale": "kr"
+        });
+
+        // 2. 코인 스크리너
+        new TradingView.widget({
+            "container_id": "crypto-screener",
+            "width": "100%", "height": "700",
+            "screener_type": "crypto_mcap",
+            "displayCurrency": "USD",
+            "colorTheme": "dark", "locale": "kr"
+        });
+    </script>
 </body>
 </html>
