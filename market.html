@@ -3,39 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
-    <title>Technical Analysis | 전문 차트</title>
+    <title>기술분석 | Advanced Chart</title>
 </head>
 <body>
-    <div class="header">
-        <h1>TECHNICAL ANALYSIS</h1>
-        <div id="tv-search-container" style="width: 100%; max-width: 600px; margin: 0 auto;"></div>
-    </div>
-
-    <div class="tabs">
-        <a href="index.html" class="tab-link">시장종합</a>
-        <a href="market.html" class="tab-link active">기술분석</a>
-        <a href="news.html" class="tab-link">실적발표</a>
-        <a href="crypto.html" class="tab-link">코인</a>
+    <div class="navbar">
+        <div class="dropdown"><a class="dropbtn">시장 ▼</a>
+            <div class="dropdown-content"><a href="index.html">시장종합</a><a href="global.html">세계지수</a></div>
+        </div>
+        <div class="dropdown"><a class="dropbtn">분석 ▼</a>
+            <div class="dropdown-content"><a href="market.html">기술분석</a><a href="analysis.html">종목진단</a></div>
+        </div>
+        <a href="news.html" class="dropbtn">뉴스</a>
+        <a href="calculator.html" class="dropbtn">계산기</a>
     </div>
 
     <div class="dashboard">
-        <div class="card">
-            <h2>📈 실시간 종목 차트 & 검색</h2>
-            <div id="tradingview-chart" class="widget-box"></div>
+        <div class="card" style="min-height: 850px;">
+            <h2>📈 인터랙티브 기술분석 차트</h2>
+            <div id="tech-chart"></div>
         </div>
     </div>
 
-    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script src="https://s3.tradingview.com/tv.js"></script>
     <script type="text/javascript">
-        // 1. 차트 위젯
         new TradingView.widget({
-            "container_id": "tradingview-chart",
-            "width": "100%", "height": "600",
+            "container_id": "tech-chart",
+            "width": "100%",
+            "height": "800",
             "symbol": "NASDAQ:AAPL",
-            "interval": "D", "timezone": "Asia/Seoul", "theme": "dark",
-            "style": "1", "locale": "kr", "toolbar_bg": "#f1f3f6",
-            "enable_publishing": false, "allow_symbol_change": true,
-            "details": true, "hotlist": true, "calendar": true
+            "interval": "D",
+            "timezone": "Asia/Seoul",
+            "theme": "dark",
+            "style": "1",
+            "locale": "kr",
+            "toolbar_bg": "#131722",
+            "allow_symbol_change": true, // 검색창 활성화
+            "details": true,            // 상세 정보 표시
+            "calendar": true,           // 경제 캘린더 표시
+            "hotlist": true             // 인기 종목 리스트 표시
         });
     </script>
 </body>
