@@ -3,11 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
-    <title>Quant Calculator | 퀀트계산기</title>
+    <title>Quant Strategy & Risk Terminal</title>
+    <style>
+        /* 계산기 전용 스타일 추가 */
+        .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; }
+        .input-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; color: #deff9a; font-weight: bold; }
+        input { width: 100%; padding: 12px; background: #111; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 16px; }
+        button { width: 100%; padding: 15px; background: #2962ff; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 18px; transition: 0.3s; }
+        button:hover { background: #1e4bd8; }
+        .result-box { margin-top: 25px; padding: 20px; background: #050505; border-radius: 12px; border: 1px solid #2962ff; }
+        .result-item { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 18px; }
+        .highlight { color: #deff9a; font-weight: bold; }
+    </style>
 </head>
 <body>
     <div class="header">
-        <h1>INVESTMENT TOOLS</h1>
+        <h1>QUANT STRATEGY TERMINAL</h1>
     </div>
 
     <div class="tabs">
@@ -25,41 +37,85 @@
 
     <div class="dashboard">
         <div class="card">
-            <h2>💰 퀀트 전략 계산기</h2>
-            <p>매수가와 목표 수익률, 손절률을 입력하여 예상 결과값을 확인하세요.</p>
-            <br>
-            매수가 (원): <input type="number" id="buy" placeholder="예: 50000"><br><br>
-            목표 수익률 (%): <input type="number" id="target" placeholder="예: 20"><br><br>
-            손절률 (%): <input type="number" id="stop" placeholder="예: 5"><br><br>
-            <button onclick="calc()">전략 계산하기</button>
-            <div id="res" style="margin-top:20px; font-weight:bold; color:#2962ff;"></div>
+            <h2>🎯 목표가/손절가 시뮬레이터</h2>
+            <div class="input-group">
+                <label>진입 가격 (매수가)</label>
+                <input type="number" id="buyPrice" placeholder="예: 150.50">
+            </div>
+            <div class="calc-grid">
+                <div class="input-group">
+                    <label>목표 수익률 (%)</label>
+                    <input type="number" id="targetPct" value="20">
+                </div>
+                <div class="input-group">
+                    <label>허용 손실률 (%)</label>
+                    <input type="number" id="stopPct" value="5">
+                </div>
+            </div>
+            <button onclick="calculateTargets()">전략 산출하기</button>
+            
+            <div class="result-box" id="targetResult" style="display:none;">
+                <div class="result-item"><span>예상 목표가:</span> <span class="highlight" id="resTarget">0</span></div>
+                <div class="result-item"><span>예상 손절가:</span> <span class="highlight" style="color:#ff5252;" id="resStop">0</span></div>
+                <div class="result-item"><span>손익비 (R/R):</span> <span class="highlight" id="resRatio">0</span></div>
+            </div>
         </div>
+
         <div class="card">
-            <h2>💡 계산기 사용 가이드</h2>
-            <p>1. <b>매수가</b>: 주식을 매수한 가격을 입력합니다.</p>
-            <p>2. <b>목표 수익률</b>: 실현하고자 하는 기대 수익률을 입력합니다.</p>
-            <p>3. <b>손절률</b>: 감당 가능한 최대 손실 허용 범위를 입력합니다.</p>
-            <p>위 데이터는 리스크 관리의 기본이며, 성공적인 투자의 첫걸음입니다.</p>
+            <h2>🛡️ 포지션 사이징 (리스크 관리)</h2>
+            <div class="input-group">
+                <label>총 투자 자본 (Total Capital)</label>
+                <input type="number" id="totalCap" placeholder="예: 10,000,000">
+            </div>
+            <div class="calc-grid">
+                <div class="input-group">
+                    <label>1회 매매 리스크 (%)</label>
+                    <input type="number" id="riskPct" value="2">
+                </div>
+                <div class="input-group">
+                    <label>진입-손절 폭 (%)</label>
+                    <input type="number" id="gapPct" placeholder="예: 5">
+                </div>
+            </div>
+            <button onclick="calculatePosition()">적정 비중 계산</button>
+            
+            <div class="result-box" id="posResult" style="display:none;">
+                <div class="result-item"><span>적정 투입 금액:</span> <span class="highlight" id="resAmount">0</span></div>
+                <div class="result-item"><span>포트폴리오 비중:</span> <span class="highlight" id="resWeight">0%</span></div>
+                <div class="result-item"><span>최대 손실 예상액:</span> <span class="highlight" style="color:#ff5252;" id="resLoss">0</span></div>
+            </div>
         </div>
     </div>
 
     <script>
-        function calc() {
-            let buy = parseFloat(document.getElementById('buy').value);
-            let target = parseFloat(document.getElementById('target').value);
-            let stop = parseFloat(document.getElementById('stop').value);
-            
-            if (!buy || !target || !stop) {
-                document.getElementById('res').innerText = "모든 항목을 입력해주세요.";
-                return;
-            }
-            
-            let targetPrice = buy * (1 + target / 100);
-            let stopPrice = buy * (1 - stop / 100);
-            
-            document.getElementById('res').innerHTML = 
-                "✅ 목표 매도가: " + targetPrice.toLocaleString() + "원<br>" +
-                "❌ 손절 가격: " + stopPrice.toLocaleString() + "원";
+        function calculateTargets() {
+            const buy = parseFloat(document.getElementById('buyPrice').value);
+            const target = parseFloat(document.getElementById('targetPct').value) / 100;
+            const stop = parseFloat(document.getElementById('stopPct').value) / 100;
+
+            if(!buy) return alert("매수가를 입력해줘!");
+
+            document.getElementById('resTarget').innerText = (buy * (1 + target)).toLocaleString(undefined, {maximumFractionDigits: 2});
+            document.getElementById('resStop').innerText = (buy * (1 - stop)).toLocaleString(undefined, {maximumFractionDigits: 2});
+            document.getElementById('resRatio').innerText = (target / stop).toFixed(2);
+            document.getElementById('targetResult').style.display = 'block';
+        }
+
+        function calculatePosition() {
+            const cap = parseFloat(document.getElementById('totalCap').value);
+            const risk = parseFloat(document.getElementById('riskPct').value) / 100;
+            const gap = parseFloat(document.getElementById('gapPct').value) / 100;
+
+            if(!cap || !gap) return alert("자본금과 손절 폭을 입력해줘!");
+
+            const riskAmount = cap * risk;
+            const investAmount = riskAmount / gap;
+            const weight = (investAmount / cap) * 100;
+
+            document.getElementById('resAmount').innerText = Math.floor(investAmount).toLocaleString() + " 원";
+            document.getElementById('resWeight').innerText = weight.toFixed(1) + "%";
+            document.getElementById('resLoss').innerText = Math.floor(riskAmount).toLocaleString() + " 원";
+            document.getElementById('posResult').style.display = 'block';
         }
     </script>
 </body>
