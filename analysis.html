@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
-    <title>Stock Analysis | 기업분석</title>
+    <title>Stock Analysis | 종목진단</title>
 </head>
 <body>
     <div class="header">
-        <h1>INVESTMENT ANALYSIS</h1>
+        <h1>STOCK ANALYSIS & RESEARCH</h1>
     </div>
 
     <div class="tabs">
@@ -24,9 +24,20 @@
     </div>
 
     <div class="dashboard">
-        <div class="card" style="grid-column: span 1;">
-            <h2>🔍 기업 재무 진단</h2>
+        <div class="card" style="grid-column: span 2;">
+            <h2>🔍 종목 심층 분석 (검색 가능)</h2>
             <div class="tradingview-widget-container">
+                <script src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-info.js" async>
+                {
+                    "symbol": "NASDAQ:AAPL",
+                    "width": "100%",
+                    "locale": "kr",
+                    "colorTheme": "dark",
+                    "isTransparent": false
+                }
+                </script>
+            </div>
+            <div class="tradingview-widget-container" style="margin-top: 20px;">
                 <script src="https://s3.tradingview.com/external-embedding/embed-widget-financials.js" async>
                 {
                     "symbol": "NASDAQ:AAPL",
@@ -34,24 +45,7 @@
                     "isTransparent": false,
                     "displayMode": "regular",
                     "width": "100%",
-                    "height": "600",
-                    "locale": "kr"
-                }
-                </script>
-            </div>
-        </div>
-
-        <div class="card" style="grid-column: span 1;">
-            <h2>⚖️ 기술적 매매 의견</h2>
-            <div class="tradingview-widget-container">
-                <script src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
-                {
-                    "symbol": "NASDAQ:AAPL",
-                    "interval": "1D",
-                    "colorTheme": "dark",
-                    "isTransparent": false,
-                    "height": "600",
-                    "width": "100%",
+                    "height": "800",
                     "locale": "kr"
                 }
                 </script>
