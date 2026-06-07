@@ -2,183 +2,111 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Financial News Today | Bitcoin, Stocks, Forex Market Updates</title>
+<title>Live Crypto & Financial News - Bitcoin Stock Market Updates</title>
 
-<meta name="description" content="Latest financial news and analysis on Bitcoin, crypto, stocks, Nasdaq, forex and global markets. Real-time updates and insights.">
+<meta name="description" content="Live financial news updates on Bitcoin, crypto, stocks, forex and global markets. Real-time headlines and analysis.">
 
 <link rel="stylesheet" href="style.css">
+
+<style>
+body { margin:0; font-family:Arial; background:#0b1220; color:white; }
+
+.topbar {
+  padding:20px;
+  text-align:center;
+  background:#111827;
+}
+
+.menu {
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  padding:10px;
+  background:#1f2937;
+}
+
+.menu a {
+  color:white;
+  text-decoration:none;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:15px;
+  padding:20px;
+}
+
+.card {
+  background:#111827;
+  padding:15px;
+  border-radius:12px;
+}
+
+a {
+  color:#60a5fa;
+  text-decoration:none;
+}
+
+small {
+  color:#9ca3af;
+}
+</style>
 
 </head>
 
 <body>
 
-<header class="topbar">
-  <div class="logo">📰 Finance News Hub</div>
-  <div class="subtitle">Bitcoin • Stocks • Forex • Global Economy • Analysis</div>
-</header>
+<div class="topbar">
+<h1>📰 Live Financial News</h1>
+<p>Bitcoin • Crypto • Stocks • Global Markets</p>
+</div>
 
-<nav class="menu">
-  <a href="index.html">Home</a>
-  <a href="market.html">Markets</a>
-  <a href="crypto.html">Crypto</a>
-  <a href="forex.html">Forex</a>
-  <a href="news.html">News</a>
-  <a href="predict.html">Predict</a>
-</nav>
+<div class="menu">
+<a href="index.html">Home</a>
+<a href="crypto.html">Crypto</a>
+<a href="market.html">Markets</a>
+<a href="news.html">News</a>
+<a href="predict.html">Predict</a>
+</div>
 
-<!-- TREND BAR -->
-<section class="stats-bar">
+<div class="grid" id="news"></div>
 
-  <div class="stat">
-    <h4>Market Trend</h4>
-    <p>Volatile</p>
-  </div>
+<script>
 
-  <div class="stat">
-    <h4>Crypto Sentiment</h4>
-    <p>Neutral</p>
-  </div>
+async function loadNews() {
 
-  <div class="stat">
-    <h4>Stock Market</h4>
-    <p>Mixed</p>
-  </div>
+  const rss = "https://api.rss2json.com/v1/api.json?rss_url=" +
+              encodeURIComponent("https://www.coindesk.com/arc/outboundfeeds/rss/");
 
-  <div class="stat">
-    <h4>Forex</h4>
-    <p>USD Strong</p>
-  </div>
+  const res = await fetch(rss);
+  const data = await res.json();
 
-</section>
+  const container = document.getElementById("news");
+  container.innerHTML = "";
 
-<!-- MAIN NEWS GRID -->
-<section class="grid">
+  data.items.slice(0, 12).forEach(n => {
 
-  <div class="card large">
-    <h2>📊 Global Market Overview Today</h2>
+    const div = document.createElement("div");
+    div.className = "card";
 
-    <p>
-      Global financial markets are currently influenced by macroeconomic uncertainty,
-      including inflation data, interest rate expectations, and geopolitical risks.
-    </p>
+    div.innerHTML = `
+      <h3>${n.title}</h3>
+      <small>${new Date(n.pubDate).toLocaleString()}</small>
+      <p>${n.description ? n.description.slice(0,120) : ""}...</p>
+      <a href="${n.link}" target="_blank">Read Full Article →</a>
+    `;
 
-    <p>
-      Risk assets such as stocks and cryptocurrencies are showing increased volatility,
-      while safe-haven assets remain relatively strong.
-    </p>
-  </div>
+    container.appendChild(div);
+  });
+}
 
-  <!-- BITCOIN NEWS -->
-  <div class="card">
-    <h3>₿ Bitcoin Price Update</h3>
-    <p>
-      Bitcoin continues to react strongly to macroeconomic conditions and liquidity cycles.
-      Traders are watching key resistance levels closely.
-    </p>
-  </div>
+loadNews();
+setInterval(loadNews, 120000);
 
-  <!-- CRYPTO NEWS -->
-  <div class="card">
-    <h3>💰 Crypto Market News</h3>
-    <p>
-      Altcoins are following Bitcoin momentum, with increased volatility across major tokens
-      such as Ethereum and Solana.
-    </p>
-  </div>
-
-  <!-- STOCK NEWS -->
-  <div class="card">
-    <h3>📈 Stock Market Today</h3>
-    <p>
-      U.S. stock markets remain driven by tech sector performance and interest rate expectations.
-      Nasdaq continues to lead market direction.
-    </p>
-  </div>
-
-  <!-- FOREX NEWS -->
-  <div class="card">
-    <h3>💱 Forex Market Update</h3>
-    <p>
-      The U.S. dollar remains strong against major currencies,
-      driven by safe-haven demand and interest rate expectations.
-    </p>
-  </div>
-
-  <!-- GOLD / OIL -->
-  <div class="card">
-    <h3>🥇 Commodities Market</h3>
-    <p>
-      Gold remains stable as investors hedge against uncertainty,
-      while oil prices fluctuate due to supply concerns.
-    </p>
-  </div>
-
-  <!-- INSIGHT SECTION -->
-  <div class="card">
-    <h3>💡 Market Insight</h3>
-    <ul>
-      <li>High volatility across crypto and stocks</li>
-      <li>Macro-driven market movements dominate</li>
-      <li>Liquidity remains key factor</li>
-      <li>Short-term uncertainty persists</li>
-    </ul>
-  </div>
-
-  <!-- FEATURE ARTICLE (SEO CORE) -->
-  <div class="card large">
-    <h2>📌 Why Markets Are Moving Today</h2>
-
-    <p>
-      Financial markets respond primarily to macroeconomic indicators such as inflation,
-      central bank policies, and global economic growth expectations.
-    </p>
-
-    <p>
-      Bitcoin and cryptocurrency markets often correlate with Nasdaq movements,
-      while forex markets react more directly to interest rate expectations.
-    </p>
-
-    <p>
-      Investors are increasingly focused on risk management and long-term positioning
-      due to ongoing uncertainty in global markets.
-    </p>
-  </div>
-
-  <!-- AD SLOT (ADSENSE) -->
-  <div class="card adbox">
-    <h3>Sponsored</h3>
-    <p>Advertisement placement (Google AdSense optimized slot)</p>
-  </div>
-
-</section>
-
-<!-- SEO ARTICLE BLOCK -->
-<section class="card" style="margin:20px;">
-
-  <h2>📈 Bitcoin, Stocks, and Global Market Trends Explained</h2>
-
-  <p>
-    The global financial system is interconnected, meaning movements in one market
-    can influence others. For example, Bitcoin often reacts to liquidity changes
-    that also affect stock markets.
-  </p>
-
-  <p>
-    Investors use market news and analysis to make informed decisions,
-    especially during periods of high volatility.
-  </p>
-
-  <p>
-    Understanding macroeconomic trends is essential for navigating modern financial markets.
-  </p>
-
-</section>
-
-<footer>
-  <p>© 2026 Finance Hub - Financial News & Market Analysis Platform</p>
-</footer>
+</script>
 
 </body>
 </html>
