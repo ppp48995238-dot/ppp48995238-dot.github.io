@@ -1,27 +1,23 @@
-* { box-sizing: border-box; margin: 0; padding: 0; }
 body { background-color: #0c0e12; color: #e0e0e0; font-family: 'Pretendard', sans-serif; padding: 20px; }
-
-/* 헤더 및 메뉴 */
 .header { text-align: center; padding: 20px 0; border-bottom: 1px solid #2f3239; }
 .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
 .tab-link { color: #888; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; }
 .tab-link:hover, .tab-link.active { background: #2962ff; color: #fff; }
 
-/* 핵심 수정: 대시보드 레이아웃 */
+/* 핵심: 12단 그리드 시스템 */
 .dashboard { 
     display: grid; 
-    grid-template-columns: repeat(12, 1fr); /* 12단 그리드 */
+    grid-template-columns: repeat(12, 1fr); 
     gap: 20px; 
     max-width: 1600px; 
     margin: 0 auto; 
 }
-
-/* 카드 크기 강제 */
-.card { background: #16181d; border: 1px solid #2f3239; border-radius: 8px; padding: 20px; }
-.full { grid-column: span 12; } /* 꽉 찬 화면용 */
-.half { grid-column: span 6; }  /* 반쪽짜리 화면용 */
-
-/* 모바일 대응 */
-@media (max-width: 900px) { .half { grid-column: span 12; } }
-
-.widget-box { width: 100%; min-height: 500px; }
+.card { 
+    background: #16181d; 
+    border: 1px solid #2f3239; 
+    border-radius: 8px; 
+    padding: 20px; 
+    grid-column: span 12; /* 기본적으로 한 줄 다 차지 */
+}
+/* 대형 위젯용 클래스 */
+.widget-box { width: 100%; min-height: 600px; }
