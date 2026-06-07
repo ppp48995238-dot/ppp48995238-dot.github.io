@@ -1,67 +1,71 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <title>Market Sentiment | 공포 & 탐욕 지수</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentiment Analysis - GlobalEdge</title>
+  <meta name="description" content="투자자 심리 지표와 긍정/부정 분석 데이터">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="header">
-        <h1>MARKET SENTIMENT & VOLATILITY</h1>
-    </div>
+  <header>
+    <h1>Sentiment Analysis</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="crypto.html">Crypto</a>
+      <a href="forex.html">Forex</a>
+      <a href="market.html">Markets</a>
+      <a href="predict.html">Predict</a>
+      <a href="news.html">News</a>
+      <a href="global.html">Global</a>
+      <a href="analysis.html">Analysis</a>
+      <a href="calculator.html">Calculator</a>
+    </nav>
+  </header>
 
-    <div class="tabs">
-        <a href="index.html" class="tab-link">시장종합</a>
-        <a href="market.html" class="tab-link">기술분석</a>
-        <a href="news.html" class="tab-link">실적발표</a>
-        <a href="crypto.html" class="tab-link">코인</a>
-        <a href="forex.html" class="tab-link">환율</a>
-        <a href="sentiment.html" class="tab-link">공포지수</a>
-        <a href="global.html" class="tab-link">세계지수</a>
-        <a href="analysis.html" class="tab-link">종목진단</a>
-        <a href="predict.html" class="tab-link">예측시장</a>
-        <a href="calculator.html" class="tab-link">퀀트계산기</a>
-    </div>
+  <main>
+    <section>
+      <h2>투자 심리 지표</h2>
+      <p>뉴스와 소셜미디어 데이터를 기반으로 긍정/부정 비율을 표시합니다.</p>
+      <table border="1" style="width:100%; text-align:center;">
+        <thead>
+          <tr>
+            <th>자산</th>
+            <th>긍정 비율</th>
+            <th>부정 비율</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>비트코인</td>
+            <td>72%</td>
+            <td>28%</td>
+          </tr>
+          <tr>
+            <td>이더리움</td>
+            <td>65%</td>
+            <td>35%</td>
+          </tr>
+          <tr>
+            <td>S&P500</td>
+            <td>54%</td>
+            <td>46%</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-    <div class="dashboard">
-        <div class="card" style="grid-column: span 2;">
-            <h2>😨 변동성 지수 (VIX) - 시장의 공포 체감도</h2>
-            <div class="tradingview-widget-container">
-                <script src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-                {
-                    "symbol": "CBOE:VIX",
-                    "interval": "D",
-                    "timezone": "Asia/Seoul",
-                    "theme": "dark",
-                    "style": "1",
-                    "locale": "kr",
-                    "width": "100%",
-                    "height": "600",
-                    "allow_symbol_change": false,
-                    "details": true,
-                    "calendar": true
-                }
-                </script>
-            </div>
-        </div>
+    <section>
+      <h2>심리 그래프</h2>
+      <p>추후 API 연동으로 뉴스/트위터 기반 실시간 심리 그래프를 표시할 수 있습니다.</p>
+      <div style="background:#161b22; padding:2rem; text-align:center;">
+        [Sentiment Graph 자리]
+      </div>
+    </section>
+  </main>
 
-        <div class="card" style="grid-column: span 2;">
-            <h2>📊 주요 지수 기술적 심리 분석</h2>
-            <div class="tradingview-widget-container">
-                <script src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
-                {
-                    "interval": "1D",
-                    "width": "100%",
-                    "height": "600",
-                    "symbol": "NASDAQ:NDX",
-                    "showIntervalTabs": true,
-                    "displayMode": "single",
-                    "locale": "kr",
-                    "colorTheme": "dark"
-                }
-                </script>
-            </div>
-        </div>
-    </div>
+  <footer>
+    <p>&copy; 2026 GlobalEdge. All rights reserved.</p>
+  </footer>
 </body>
 </html>
