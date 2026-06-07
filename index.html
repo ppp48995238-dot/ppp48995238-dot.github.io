@@ -11,61 +11,41 @@
     </div>
 
     <div class="tabs">
-        <a href="index.html" class="tab-link">시장종합</a>
+        <a href="index.html" class="tab-link active">시장종합</a>
         <a href="market.html" class="tab-link">기술분석</a>
         <a href="news.html" class="tab-link">실적발표</a>
         <a href="crypto.html" class="tab-link">코인</a>
-        <a href="forex.html" class="tab-link">환율</a>
-        <a href="sentiment.html" class="tab-link">공포지수</a>
         <a href="global.html" class="tab-link">세계지수</a>
         <a href="analysis.html" class="tab-link">종목진단</a>
-        <a href="predict.html" class="tab-link">예측시장</a>
-        <a href="calculator.html" class="tab-link">퀀트계산기</a>
     </div>
 
     <div class="dashboard">
-        <div class="card" style="grid-column: span 2;">
-            <h2>📊 시장 종합 오버뷰 (실시간)</h2>
-            <div class="tradingview-widget-container">
-                <script src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-                {
-                    "colorTheme": "dark",
-                    "dateRange": "12M",
-                    "showChart": true,
-                    "locale": "kr",
-                    "largeChartUrl": "",
-                    "isTransparent": false,
-                    "showSymbolLogo": true,
-                    "showFloatingTooltip": true,
-                    "width": "100%",
-                    "height": "600",
-                    "plotLineColorGrowing": "#2962FF",
-                    "plotLineColorFalling": "#2962FF",
-                    "tabs": [
-                        { "title": "주요 지수", "symbols": [ {"s": "FOREXCOM:SPXUSD"}, {"s": "FOREXCOM:NSXUSD"}, {"s": "INDEX:DJI"}, {"s": "INDEX:NKY"}, {"s": "KRX:KOSPI"} ] },
-                        { "title": "채권", "symbols": [ {"s": "CBOT:ZB1!"}, {"s": "CBOT:ZN1!"} ] }
-                    ]
-                }
-                </script>
-            </div>
+        <div class="card">
+            <h2>📊 시장 종합 실시간 지표</h2>
+            <div id="market-overview" class="widget-box"></div>
         </div>
 
-        <div class="card" style="grid-column: span 2;">
+        <div class="card">
             <h2>📰 실시간 경제 뉴스 & 이슈</h2>
-            <div class="tradingview-widget-container">
-                <script src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
-                {
-                    "feedMode": "all_symbols",
-                    "colorTheme": "dark",
-                    "isTransparent": false,
-                    "displayMode": "regular",
-                    "width": "100%",
-                    "height": "800",
-                    "locale": "kr"
-                }
-                </script>
-            </div>
+            <div id="news-timeline" class="widget-box"></div>
         </div>
     </div>
+
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script type="text/javascript">
+        // 시장 종합
+        new TradingView.widget({
+            "container_id": "market-overview",
+            "width": "100%", "height": "600",
+            "symbols": [ {"s": "SP:SPX"}, {"s": "NASDAQ:NDX"}, {"s": "INDEX:DJI"}, {"s": "KRX:KOSPI"} ],
+            "theme": "dark", "locale": "kr", "allow_symbol_change": true
+        });
+        // 뉴스
+        new TradingView.widget({
+            "container_id": "news-timeline",
+            "width": "100%", "height": "800",
+            "feedMode": "all_symbols", "colorTheme": "dark", "locale": "kr"
+        });
+    </script>
 </body>
 </html>
