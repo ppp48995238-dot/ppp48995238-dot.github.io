@@ -1,42 +1,87 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <title>Global Market Indices</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Data - GlobalEdge</title>
+  <meta name="description" content="글로벌 경제 지표와 원자재, 금리 데이터">
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
 </head>
 <body>
-    <div class="header">
-        <h1>GLOBAL MARKET INDICES</h1>
-    </div>
+  <header>
+    <h1>Global Economic Data</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="crypto.html">Crypto</a>
+      <a href="forex.html">Forex</a>
+      <a href="market.html">Markets</a>
+      <a href="predict.html">Predict</a>
+      <a href="sentiment.html">Sentiment</a>
+      <a href="news.html">News</a>
+      <a href="analysis.html">Analysis</a>
+      <a href="calculator.html">Calculator</a>
+    </nav>
+  </header>
 
-    <div class="tabs">
-        <a href="index.html" class="tab-link">시장종합</a>
-        <a href="market.html" class="tab-link">기술분석</a>
-        <a href="news.html" class="tab-link">실적발표</a>
-        <a href="crypto.html" class="tab-link">코인</a>
-        <a href="global.html" class="tab-link active">세계지수</a>
-    </div>
-
-    <div class="dashboard">
-        <div class="card">
-            <h2>🌎 주요 국가 지수 및 원자재 현황</h2>
-            <div id="global-market" class="widget-box" style="min-height: 850px;"></div>
-        </div>
-    </div>
-
-    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-    <script type="text/javascript">
+  <main>
+    <section>
+      <h2>금 (Gold) 실시간 차트</h2>
+      <div id="gold-chart"></div>
+      <script>
         new TradingView.widget({
-            "container_id": "global-market",
-            "width": "100%", "height": "850",
-            "symbolsGroups": [
-                { "name": "미국 증시", "symbols": [ {"s": "SP:SPX"}, {"s": "NASDAQ:NDX"}, {"s": "INDEX:DJI"} ] },
-                { "name": "아시아/유럽", "symbols": [ {"s": "INDEX:NKY"}, {"s": "INDEX:DAX"}, {"s": "KRX:KOSPI"} ] },
-                { "name": "원자재/에너지", "symbols": [ {"s": "TVC:GOLD"}, {"s": "TVC:USOIL"}, {"s": "TVC:SILVER"} ] }
-            ],
-            "showSymbolLogo": true, "colorTheme": "dark", "locale": "kr"
+          "width": "100%",
+          "height": 500,
+          "symbol": "COMEX:GC1!",
+          "interval": "60",
+          "timezone": "Asia/Seoul",
+          "theme": "dark",
+          "style": "1",
+          "locale": "kr",
+          "container_id": "gold-chart"
         });
-    </script>
+      </script>
+    </section>
+
+    <section>
+      <h2>원유 (Crude Oil) 실시간 차트</h2>
+      <div id="oil-chart"></div>
+      <script>
+        new TradingView.widget({
+          "width": "100%",
+          "height": 500,
+          "symbol": "NYMEX:CL1!",
+          "interval": "60",
+          "timezone": "Asia/Seoul",
+          "theme": "dark",
+          "style": "1",
+          "locale": "kr",
+          "container_id": "oil-chart"
+        });
+      </script>
+    </section>
+
+    <section>
+      <h2>미국채 10년물 금리</h2>
+      <div id="us10y-chart"></div>
+      <script>
+        new TradingView.widget({
+          "width": "100%",
+          "height": 500,
+          "symbol": "TVC:US10Y",
+          "interval": "60",
+          "timezone": "Asia/Seoul",
+          "theme": "dark",
+          "style": "1",
+          "locale": "kr",
+          "container_id": "us10y-chart"
+        });
+      </script>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 GlobalEdge. All rights reserved.</p>
+  </footer>
 </body>
 </html>
