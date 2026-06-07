@@ -2,143 +2,140 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Crypto Market - Bitcoin, Ethereum, Altcoins</title>
-<meta name="description" content="Live cryptocurrency prices, Bitcoin, Ethereum, altcoins charts and market trends.">
+<title>Crypto Market Live - Prices, Charts, Rankings</title>
+<meta name="description" content="Live cryptocurrency prices, rankings, market cap, and charts like TradingView. Bitcoin, Ethereum and altcoins live data.">
 
 <link rel="stylesheet" href="style.css">
+
+<style>
+body { margin:0; font-family:Arial; background:#0b1220; color:white; }
+
+.topbar { padding:20px; text-align:center; background:#111827; }
+.menu { display:flex; justify-content:center; gap:10px; padding:10px; background:#1f2937; }
+.menu a { color:white; text-decoration:none; }
+
+.searchBox {
+  text-align:center;
+  margin:15px;
+}
+
+input {
+  padding:10px;
+  width:60%;
+  border-radius:10px;
+  border:none;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:15px;
+  padding:20px;
+}
+
+.card {
+  background:#111827;
+  padding:15px;
+  border-radius:12px;
+}
+
+.green { color:#22c55e; }
+.red { color:#ef4444; }
+
+iframe {
+  width:100%;
+  height:300px;
+  border:none;
+  border-radius:10px;
+}
+</style>
 
 </head>
 
 <body>
 
-<header class="topbar">
-  <div class="logo">₿ Crypto Market</div>
-  <div class="subtitle">Bitcoin • Ethereum • Altcoins • Market Trends</div>
-</header>
+<div class="topbar">
+<h1>₿ Crypto Market Live</h1>
+<p>Real-time prices, charts, rankings (CoinGecko powered)</p>
+</div>
 
-<nav class="menu">
-  <a href="index.html">Home</a>
-  <a href="market.html">Markets</a>
-  <a href="crypto.html">Crypto</a>
-  <a href="forex.html">Forex</a>
-  <a href="news.html">News</a>
-  <a href="predict.html">Predict</a>
-</nav>
+<div class="menu">
+<a href="index.html">Home</a>
+<a href="crypto.html">Crypto</a>
+<a href="market.html">Markets</a>
+<a href="news.html">News</a>
+<a href="predict.html">Predict</a>
+</div>
 
-<!-- CRYPTO SUMMARY -->
-<section class="stats-bar">
+<div class="searchBox">
+<input type="text" id="search" placeholder="Search coin (bitcoin, ethereum...)">
+</div>
 
-  <div class="stat">
-    <h4>BTC Dominance</h4>
-    <p>High</p>
-  </div>
+<div class="grid" id="coins"></div>
 
-  <div class="stat">
-    <h4>Market Mood</h4>
-    <p>Volatile</p>
-  </div>
+<div class="card" style="margin:20px;">
+<h2>📊 Bitcoin Chart (Live)</h2>
+<iframe src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:BTCUSDT&interval=60&theme=dark"></iframe>
+</div>
 
-  <div class="stat">
-    <h4>Altcoins</h4>
-    <p>Active</p>
-  </div>
+<script>
 
-  <div class="stat">
-    <h4>Trend</h4>
-    <p>Sideways</p>
-  </div>
+let allCoins = [];
 
-</section>
+async function loadCoins() {
 
-<!-- MAIN GRID -->
-<section class="grid">
+  const res = await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1");
+  const data = await res.json();
 
-  <!-- BITCOIN -->
-  <div class="card large">
-    <h2>₿ Bitcoin (BTC/USDT)</h2>
-    <iframe 
-      src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:BTCUSDT&interval=60&theme=dark"
-      loading="lazy">
-    </iframe>
-  </div>
+  allCoins = data;
 
-  <!-- ETH -->
-  <div class="card">
-    <h3>Ξ Ethereum</h3>
-    <iframe 
-      src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:ETHUSDT&interval=60&theme=dark"
-      loading="lazy">
-    </iframe>
-  </div>
+  render(data);
+}
 
-  <!-- BINANCE COIN -->
-  <div class="card">
-    <h3>BNB</h3>
-    <iframe 
-      src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:BNBUSDT&interval=60&theme=dark"
-      loading="lazy">
-    </iframe>
-  </div>
+function render(data) {
 
-  <!-- SOLANA -->
-  <div class="card">
-    <h3>SOL</h3>
-    <iframe 
-      src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:SOLUSDT&interval=60&theme=dark"
-      loading="lazy">
-    </iframe>
-  </div>
+  const container = document.getElementById("coins");
+  container.innerHTML = "";
 
-  <!-- MARKET INSIGHT -->
-  <div class="card">
-    <h3>📊 Crypto Insight</h3>
-    <ul>
-      <li>Bitcoin still leading overall market direction</li>
-      <li>Altcoins following BTC momentum</li>
-      <li>High volatility due to macro uncertainty</li>
-      <li>Institutional flow still dominant factor</li>
-    </ul>
-  </div>
+  data.forEach(c => {
 
-  <!-- TREND ANALYSIS -->
-  <div class="card">
-    <h3>📉 Trend Analysis</h3>
-    <p>
-      Crypto markets are currently in a consolidation phase,
-      with liquidity shifting between BTC and major altcoins.
-    </p>
-  </div>
+    const change = c.price_change_percentage_24h;
+    const color = change >= 0 ? "green" : "red";
 
-  <!-- FEAR & GREED -->
-  <div class="card">
-    <h3>😱 Fear & Greed Index</h3>
-    <p>Loading sentiment...</p>
-    <p>Market psychology indicator (manual update or API later)</p>
-  </div>
+    const div = document.createElement("div");
+    div.className = "card";
 
-  <!-- AD SPACE -->
-  <div class="card adbox">
-    <h3>Sponsored</h3>
-    <p>AdSense placement area (Crypto page high CTR)</p>
-  </div>
+    div.innerHTML = `
+      <h3>${c.market_cap_rank}. ${c.name}</h3>
+      <p>Price: $${c.current_price.toLocaleString()}</p>
+      <p class="${color}">24h: ${change.toFixed(2)}%</p>
+      <p>Market Cap: $${c.market_cap.toLocaleString()}</p>
+      <p>Volume: $${c.total_volume.toLocaleString()}</p>
+    `;
 
-</section>
+    container.appendChild(div);
+  });
+}
 
-<!-- SEO CONTENT BLOCK -->
-<section class="card" style="margin:20px;">
-  <h2>💡 What is happening in Crypto Market?</h2>
-  <p>
-    The cryptocurrency market is highly influenced by Bitcoin movements,
-    macroeconomic conditions, and institutional adoption trends.
-    Altcoins typically follow Bitcoin direction with higher volatility.
-  </p>
-</section>
+// SEARCH FILTER
+document.getElementById("search").addEventListener("input", function(e){
 
-<footer>
-  <p>© 2026 Finance Hub - Crypto market data powered by TradingView</p>
-</footer>
+  const value = e.target.value.toLowerCase();
+
+  const filtered = allCoins.filter(c =>
+    c.name.toLowerCase().includes(value) ||
+    c.symbol.toLowerCase().includes(value)
+  );
+
+  render(filtered);
+});
+
+loadCoins();
+setInterval(loadCoins, 60000);
+
+</script>
 
 </body>
 </html>
