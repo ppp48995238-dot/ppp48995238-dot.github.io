@@ -1,83 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Financial News - GlobalEdge</title>
-  <meta name="description" content="Real-time global financial news and market analysis">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Financial News - Stocks, Crypto, Forex Updates</title>
+<meta name="description" content="Latest financial news on Bitcoin, stocks, forex and global markets.">
+
+<link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
-  <header>
-    <h1>📰 Financial News</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="crypto.html">Crypto</a>
-      <a href="forex.html">Forex</a>
-      <a href="market.html">Markets</a>
-      <a href="predict.html">Predict</a>
-      <a href="sentiment.html">Sentiment</a>
-      <a href="global.html">Global</a>
-      <a href="analysis.html">Analysis</a>
-      <a href="calculator.html">Calculator</a>
-    </nav>
-    <!-- 언어 선택 -->
-    <div id="lang-switch">
-      <button onclick="setLang('en')">English</button>
-      <button onclick="setLang('ko')">한국어</button>
-      <button onclick="setLang('zh')">中文</button>
-      <button onclick="setLang('ja')">日本語</button>
-    </div>
-  </header>
 
-  <main>
-    <section>
-      <h2 id="latest-news">Latest Financial Headlines</h2>
-      <ul>
-        <li><strong>Bitcoin</strong> attempts 70K breakout — investor focus intensifies</li>
-        <li><strong>EUR/USD</strong> volatility rises ahead of ECB policy announcement</li>
-        <li><strong>S&P500</strong> nears record high driven by tech stocks</li>
-      </ul>
-    </section>
+<header class="topbar">
+  <div class="logo">📰 Market News</div>
+  <div class="subtitle">Stocks • Crypto • Forex • Global Economy</div>
+</header>
 
-    <section>
-      <h2 id="live-feed">Live News Feed</h2>
-      <div style="background:#161b22; padding:2rem; text-align:center;">
-        [API 연동 자리: Investing.com 스타일 실시간 뉴스 헤드라인 자동 표시]
-      </div>
-    </section>
-  </main>
+<nav class="menu">
+  <a href="index.html">Home</a>
+  <a href="market.html">Markets</a>
+  <a href="crypto.html">Crypto</a>
+  <a href="forex.html">Forex</a>
+  <a href="news.html">News</a>
+  <a href="predict.html">Predict</a>
+</nav>
 
-  <footer>
-    <p>&copy; 2026 GlobalEdge. All rights reserved.</p>
-  </footer>
+<!-- NEWS GRID -->
+<section class="grid">
 
-  <script>
-    // 다국어 지원
-    const translations = {
-      en: {
-        "latest-news": "Latest Financial Headlines",
-        "live-feed": "Live News Feed"
-      },
-      ko: {
-        "latest-news": "최신 금융 뉴스",
-        "live-feed": "실시간 뉴스 피드"
-      },
-      zh: {
-        "latest-news": "最新金融新闻",
-        "live-feed": "实时新闻"
-      },
-      ja: {
-        "latest-news": "最新金融ニュース",
-        "live-feed": "ライブニュースフィード"
-      }
-    };
+  <!-- BTC NEWS -->
+  <div class="card">
+    <h3>₿ Bitcoin News</h3>
+    <p>
+      Bitcoin continues to react to global macroeconomic uncertainty,
+      with volatility increasing during U.S. interest rate expectations.
+    </p>
+    <p>
+      Institutional investors remain active in accumulation phases.
+    </p>
+  </div>
 
-    function setLang(lang) {
-      for (const id in translations[lang]) {
-        document.getElementById(id).innerText = translations[lang][id];
-      }
-    }
-  </script>
+  <!-- ETH NEWS -->
+  <div class="card">
+    <h3>Ξ Ethereum Update</h3>
+    <p>
+      Ethereum network activity remains strong with DeFi and staking trends
+      supporting long-term demand.
+    </p>
+  </div>
+
+  <!-- STOCK NEWS -->
+  <div class="card">
+    <h3>📈 Stock Market</h3>
+    <p>
+      U.S. tech stocks continue to dominate index movements,
+      especially in AI-related sectors.
+    </p>
+  </div>
+
+  <!-- FOREX NEWS -->
+  <div class="card">
+    <h3>💱 Forex Market</h3>
+    <p>
+      The U.S. dollar remains strong against major currencies
+      due to interest rate expectations and safe-haven demand.
+    </p>
+  </div>
+
+  <!-- GLOBAL NEWS -->
+  <div class="card">
+    <h3>🌍 Global Economy</h3>
+    <p>
+      Global markets are adjusting to inflation data and central bank policies,
+      creating mixed sentiment across risk assets.
+    </p>
+  </div>
+
+  <!-- TREND BOX -->
+  <div class="card">
+    <h3>📊 Market Trend Summary</h3>
+    <ul>
+      <li>High volatility across crypto and equities</li>
+      <li>Liquidity shifting between risk assets</li>
+      <li>Macro-driven market structure</li>
+      <li>Short-term uncertainty, long-term accumulation</li>
+    </ul>
+  </div>
+
+  <!-- FEATURE ARTICLE (SEO CORE) -->
+  <div class="card large">
+    <h2>💡 Market Insight Analysis</h2>
+    <p>
+      Financial markets are currently influenced by macroeconomic uncertainty,
+      particularly interest rate expectations, inflation data, and global liquidity conditions.
+    </p>
+
+    <p>
+      Bitcoin and crypto markets tend to correlate with Nasdaq movements,
+      while safe-haven assets like gold gain attention during risk-off periods.
+    </p>
+
+    <p>
+      Investors are increasingly focusing on long-term positioning rather than short-term speculation.
+    </p>
+  </div>
+
+  <!-- AD SPACE -->
+  <div class="card adbox">
+    <h3>Sponsored</h3>
+    <p>Google AdSense placement area (High CTR News Section)</p>
+  </div>
+
+</section>
+
+<!-- SEO ARTICLE BLOCK (IMPORTANT) -->
+<section class="card" style="margin:20px;">
+  <h2>📌 Why Financial Markets Are Moving Today</h2>
+  <p>
+    Markets react strongly to macroeconomic data, including inflation reports,
+    interest rate decisions, and geopolitical events.
+  </p>
+
+  <p>
+    Cryptocurrency markets are particularly sensitive to liquidity conditions,
+    while stock markets respond to corporate earnings and economic outlook.
+  </p>
+
+  <p>
+    Understanding these dynamics is essential for long-term investment decisions.
+  </p>
+</section>
+
+<footer>
+  <p>© 2026 Finance Hub - Financial news & market insights platform</p>
+</footer>
+
 </body>
 </html>
