@@ -1,128 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GlobalEdge Terminal</title>
-  <meta name="description" content="Real-time financial data, charts, sentiment, prediction markets">
-  <link rel="stylesheet" href="style.css">
-  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Finance Hub - Global Markets Dashboard</title>
+<meta name="description" content="Real-time stocks, crypto, forex charts and market insights.">
+
+<link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
-  <header>
-    <h1>🌐 GlobalEdge Terminal</h1>
-    <nav>
-      <a href="crypto.html">Crypto</a>
-      <a href="forex.html">Forex</a>
-      <a href="market.html">Markets</a>
-      <a href="predict.html">Predict</a>
-      <a href="sentiment.html">Sentiment</a>
-      <a href="news.html">News</a>
-      <a href="global.html">Global</a>
-      <a href="analysis.html">Analysis</a>
-      <a href="calculator.html">Calculator</a>
-    </nav>
-    <!-- 언어 선택 -->
-    <div id="lang-switch">
-      <button onclick="setLang('en')">English</button>
-      <button onclick="setLang('ko')">한국어</button>
-      <button onclick="setLang('zh')">中文</button>
-      <button onclick="setLang('ja')">日本語</button>
-    </div>
-  </header>
 
-  <main style="display:grid; grid-template-columns:1fr 1fr; gap:2rem;">
-    <!-- 주요 차트 -->
-    <section>
-      <h2 id="btc-title">BTC/USDT Chart</h2>
-      <div id="btc-chart"></div>
-      <script>
-        new TradingView.widget({
-          "width": "100%",
-          "height": 400,
-          "symbol": "BINANCE:BTCUSDT",
-          "interval": "30",
-          "timezone": "Asia/Seoul",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "container_id": "btc-chart"
-        });
-      </script>
-    </section>
+<header class="topbar">
+  <div class="logo">📊 Finance Hub</div>
+  <div class="subtitle">Global Markets • Crypto • Stocks • Forex • Insights</div>
+</header>
 
-    <section>
-      <h2 id="spx-title">S&P500 Chart</h2>
-      <div id="spx-chart"></div>
-      <script>
-        new TradingView.widget({
-          "width": "100%",
-          "height": 400,
-          "symbol": "INDEX:SPX",
-          "interval": "30",
-          "timezone": "Asia/Seoul",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "container_id": "spx-chart"
-        });
-      </script>
-    </section>
+<nav class="menu">
+  <a href="index.html">Home</a>
+  <a href="market.html">Markets</a>
+  <a href="crypto.html">Crypto</a>
+  <a href="forex.html">Forex</a>
+  <a href="news.html">News</a>
+  <a href="predict.html">Predict</a>
+</nav>
 
-    <!-- 뉴스/보조지표 -->
-    <section style="grid-column:1 / span 2;">
-      <h2 id="news-title">Live News Feed</h2>
-      <div style="background:#161b22; padding:1rem;">
-        [API 연동 자리: Investing.com 스타일 뉴스 헤드라인 자동 표시]
-      </div>
-    </section>
+<section class="stats-bar">
+  <div class="stat">
+    <h4>Fear & Greed</h4>
+    <p id="fear">Neutral</p>
+  </div>
+  <div class="stat">
+    <h4>BTC Trend</h4>
+    <p id="btc">Loading...</p>
+  </div>
+  <div class="stat">
+    <h4>Market Mood</h4>
+    <p>Volatile</p>
+  </div>
+</section>
 
-    <section style="grid-column:1 / span 2;">
-      <h2 id="poly-title">Prediction Market Indicators</h2>
-      <div style="background:#161b22; padding:1rem;">
-        [Polymarket API 연동 자리: 확률 기반 보조지표 표시]
-      </div>
-    </section>
-  </main>
+<section class="grid">
 
-  <footer>
-    <p>&copy; 2026 GlobalEdge. All rights reserved.</p>
-  </footer>
+  <!-- GLOBAL MARKET -->
+  <div class="card large">
+    <h2>🌍 Global Market Overview</h2>
+    <iframe 
+      src="https://s.tradingview.com/widgetembed/?symbol=SPX&interval=D&theme=dark"
+      loading="lazy">
+    </iframe>
+  </div>
 
-  <script>
-    // 간단한 다국어 지원
-    const translations = {
-      en: {
-        "btc-title": "BTC/USDT Chart",
-        "spx-title": "S&P500 Chart",
-        "news-title": "Live News Feed",
-        "poly-title": "Prediction Market Indicators"
-      },
-      ko: {
-        "btc-title": "비트코인 차트",
-        "spx-title": "S&P500 차트",
-        "news-title": "실시간 뉴스 피드",
-        "poly-title": "예측시장 보조지표"
-      },
-      zh: {
-        "btc-title": "比特币图表",
-        "spx-title": "标普500图表",
-        "news-title": "实时新闻",
-        "poly-title": "预测市场指标"
-      },
-      ja: {
-        "btc-title": "ビットコインチャート",
-        "spx-title": "S&P500チャート",
-        "news-title": "ライブニュースフィード",
-        "poly-title": "予測市場指標"
-      }
-    };
+  <!-- BTC -->
+  <div class="card">
+    <h3>₿ Bitcoin</h3>
+    <iframe 
+      src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:BTCUSDT&interval=60&theme=dark"
+      loading="lazy">
+    </iframe>
+  </div>
 
-    function setLang(lang) {
-      for (const id in translations[lang]) {
-        document.getElementById(id).innerText = translations[lang][id];
-      }
-    }
-  </script>
+  <!-- ETH -->
+  <div class="card">
+    <h3>Ξ Ethereum</h3>
+    <iframe 
+      src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:ETHUSDT&interval=60&theme=dark"
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <!-- NASDAQ -->
+  <div class="card">
+    <h3>📈 Nasdaq</h3>
+    <iframe 
+      src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:AAPL&interval=D&theme=dark"
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <!-- NEWS PREVIEW -->
+  <div class="card">
+    <h3>📰 Breaking Market Insight</h3>
+    <ul>
+      <li>Fed interest rate expectations remain uncertain</li>
+      <li>Crypto market shows high volatility phase</li>
+      <li>Tech stocks leading index movement</li>
+    </ul>
+  </div>
+
+  <!-- AD SPACE (애드센스 자리) -->
+  <div class="card adbox">
+    <h3>Sponsored</h3>
+    <p>Ad placement area (Google AdSense)</p>
+  </div>
+
+</section>
+
+<footer>
+  <p>© 2026 Finance Hub. Real-time financial dashboard.</p>
+</footer>
+
 </body>
 </html>
