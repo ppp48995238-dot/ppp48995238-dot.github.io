@@ -1,55 +1,71 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <title>Prediction & Sentiment</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Predict Markets - GlobalEdge</title>
+  <meta name="description" content="예측시장 보조지표와 확률 기반 데이터 시각화">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="header">
-        <h1>PREDICTION & SENTIMENT</h1>
-    </div>
+  <header>
+    <h1>Predict Markets</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="crypto.html">Crypto</a>
+      <a href="forex.html">Forex</a>
+      <a href="market.html">Markets</a>
+      <a href="sentiment.html">Sentiment</a>
+      <a href="news.html">News</a>
+      <a href="global.html">Global</a>
+      <a href="analysis.html">Analysis</a>
+      <a href="calculator.html">Calculator</a>
+    </nav>
+  </header>
 
-    <div class="tabs">
-        <a href="index.html" class="tab-link">시장종합</a>
-        <a href="market.html" class="tab-link">기술분석</a>
-        <a href="news.html" class="tab-link">실적발표</a>
-        <a href="crypto.html" class="tab-link">코인</a>
-        <a href="global.html" class="tab-link">세계지수</a>
-        <a href="analysis.html" class="tab-link">종목진단</a>
-        <a href="predict.html" class="tab-link active">예측시장</a>
-    </div>
+  <main>
+    <section>
+      <h2>예측시장 보조지표</h2>
+      <p>실시간 확률 기반 데이터로 시장 방향성을 시각화합니다.</p>
+      <table border="1" style="width:100%; text-align:center;">
+        <thead>
+          <tr>
+            <th>이벤트</th>
+            <th>상승 확률</th>
+            <th>하락 확률</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>BTC 70K 돌파</td>
+            <td>65%</td>
+            <td>35%</td>
+          </tr>
+          <tr>
+            <td>EUR/USD 1.10 유지</td>
+            <td>58%</td>
+            <td>42%</td>
+          </tr>
+          <tr>
+            <td>S&P500 6000 도달</td>
+            <td>52%</td>
+            <td>48%</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-    <div class="dashboard">
-        <div class="card half">
-            <h2>🐂 시장 참여자 심리 (Long/Short Gauge)</h2>
-            <div id="sentiment-gauge" class="widget-box" style="min-height: 450px;"></div>
-        </div>
-        
-        <div class="card half">
-            <h2>🎯 거시 경제 이벤트 예측</h2>
-            <div id="event-calendar" class="widget-box" style="min-height: 450px;"></div>
-        </div>
-    </div>
+    <section>
+      <h2>데이터 시각화</h2>
+      <p>추후 API 연동으로 Polymarket 스타일 확률 그래프를 표시할 수 있습니다.</p>
+      <div style="background:#161b22; padding:2rem; text-align:center;">
+        [예측시장 그래프 자리]
+      </div>
+    </section>
+  </main>
 
-    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-    <script type="text/javascript">
-        // 1. 기술적 분석 (심리 게이지)
-        new TradingView.widget({
-            "container_id": "sentiment-gauge",
-            "width": "100%", "height": "450",
-            "symbol": "NASDAQ:AAPL",
-            "interval": "1D", "theme": "dark", "locale": "kr",
-            "allow_symbol_change": true, "showIntervalTabs": true
-        });
-
-        // 2. 경제 캘린더
-        new TradingView.widget({
-            "container_id": "event-calendar",
-            "width": "100%", "height": "450",
-            "colorTheme": "dark", "locale": "kr",
-            "importanceFilter": "0,1"
-        });
-    </script>
+  <footer>
+    <p>&copy; 2026 GlobalEdge. All rights reserved.</p>
+  </footer>
 </body>
 </html>
