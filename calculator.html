@@ -1,53 +1,58 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <title>퀀트 계산기 | 포트폴리오 관리</title>
-    <style>
-        .calc-box { max-width: 800px; margin: 40px auto; background: #16181d; padding: 30px; border: 1px solid #2f3239; border-radius: 8px; color: #fff; }
-        input { width: 100%; padding: 12px; margin: 10px 0; background: #0c0e12; border: 1px solid #2f3239; color: #fff; border-radius: 4px; }
-        button { width: 100%; padding: 15px; background: #2962ff; border: none; color: #fff; font-weight: bold; cursor: pointer; border-radius: 4px; }
-        .result-area { margin-top: 20px; padding: 20px; background: #000; border-left: 5px solid #2962ff; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investment Calculator - GlobalEdge</title>
+  <meta name="description" content="투자 수익률 계산기">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function calculateROI() {
+      const initial = parseFloat(document.getElementById("initial").value);
+      const final = parseFloat(document.getElementById("final").value);
+      if (isNaN(initial) || isNaN(final) || initial <= 0) {
+        alert("올바른 값을 입력하세요.");
+        return;
+      }
+      const roi = ((final - initial) / initial) * 100;
+      document.getElementById("result").innerText = "수익률: " + roi.toFixed(2) + "%";
+    }
+  </script>
 </head>
 <body>
-    <div class="navbar">
-        <div class="dropdown"><a class="dropbtn">시장 ▼</a>
-            <div class="dropdown-content"><a href="index.html">시장종합</a><a href="global.html">세계지수</a></div>
-        </div>
-        <div class="dropdown"><a class="dropbtn">분석 ▼</a>
-            <div class="dropdown-content"><a href="market.html">기술분석</a><a href="analysis.html">종목진단</a></div>
-        </div>
-        <a href="news.html" class="dropbtn">뉴스</a>
-        <a href="calculator.html" class="dropbtn active">계산기</a>
-    </div>
+  <header>
+    <h1>Investment Calculator</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="crypto.html">Crypto</a>
+      <a href="forex.html">Forex</a>
+      <a href="market.html">Markets</a>
+      <a href="predict.html">Predict</a>
+      <a href="sentiment.html">Sentiment</a>
+      <a href="news.html">News</a>
+      <a href="global.html">Global</a>
+      <a href="analysis.html">Analysis</a>
+    </nav>
+  </header>
 
-    <div class="calc-box">
-        <h2>🛡️ 켈리 공식 기반 포지션 사이징</h2>
-        <label>총 자본금 (원):</label>
-        <input type="number" id="capital" placeholder="예: 10000000">
-        <label>매매당 허용 손절폭 (%):</label>
-        <input type="number" id="stopLoss" placeholder="예: 2">
-        <button onclick="calculate()">계산 실행</button>
-        
-        <div class="result-area" id="result">
-            <p>자본금과 손절폭을 입력하면 적정 투입금액을 알려줄게!</p>
-        </div>
-    </div>
+  <main>
+    <section>
+      <h2>투자 수익률 계산기</h2>
+      <form onsubmit="event.preventDefault(); calculateROI();">
+        <label for="initial">초기 투자금액 (₩):</label><br>
+        <input type="number" id="initial" required><br><br>
 
-    <script>
-        function calculate() {
-            const cap = document.getElementById('capital').value;
-            const stop = document.getElementById('stopLoss').value;
-            const riskAmount = cap * 0.02; // 2% 룰 적용
-            const size = riskAmount / (stop / 100);
-            document.getElementById('result').innerHTML = 
-                `<h3>계산 결과</h3>
-                 <p>적정 투입 금액: <b>${Math.floor(size).toLocaleString()}원</b></p>
-                 <p>최대 허용 손실액: <b>${Math.floor(riskAmount).toLocaleString()}원</b></p>
-                 <small>* 위 계산은 2% 리스크 룰을 기반으로 한 퀀트 정석 방식이야.</small>`;
-        }
-    </script>
+        <label for="final">최종 금액 (₩):</label><br>
+        <input type="number" id="final" required><br><br>
+
+        <button type="submit">계산하기</button>
+      </form>
+      <p id="result" style="margin-top:1rem; font-weight:bold;"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 GlobalEdge. All rights reserved.</p>
+  </footer>
 </body>
 </html>
