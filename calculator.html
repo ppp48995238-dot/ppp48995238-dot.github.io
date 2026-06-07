@@ -1,27 +1,68 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Investment Calculator - GlobalEdge</title>
-  <meta name="description" content="투자 수익률 계산기">
+  <meta name="description" content="Investment ROI calculator with multilingual support">
   <link rel="stylesheet" href="style.css">
   <script>
     function calculateROI() {
       const initial = parseFloat(document.getElementById("initial").value);
       const final = parseFloat(document.getElementById("final").value);
       if (isNaN(initial) || isNaN(final) || initial <= 0) {
-        alert("올바른 값을 입력하세요.");
+        alert("Please enter valid values.");
         return;
       }
       const roi = ((final - initial) / initial) * 100;
-      document.getElementById("result").innerText = "수익률: " + roi.toFixed(2) + "%";
+      document.getElementById("result").innerText = translations[currentLang]["result-text"] + roi.toFixed(2) + "%";
+    }
+
+    const translations = {
+      en: {
+        "calc-title": "Investment ROI Calculator",
+        "initial-label": "Initial Investment (₩):",
+        "final-label": "Final Amount (₩):",
+        "button-text": "Calculate",
+        "result-text": "ROI: "
+      },
+      ko: {
+        "calc-title": "투자 수익률 계산기",
+        "initial-label": "초기 투자금액 (₩):",
+        "final-label": "최종 금액 (₩):",
+        "button-text": "계산하기",
+        "result-text": "수익률: "
+      },
+      zh: {
+        "calc-title": "投资回报率计算器",
+        "initial-label": "初始投资金额 (₩):",
+        "final-label": "最终金额 (₩):",
+        "button-text": "计算",
+        "result-text": "投资回报率: "
+      },
+      ja: {
+        "calc-title": "投資収益率計算機",
+        "initial-label": "初期投資額 (₩):",
+        "final-label": "最終金額 (₩):",
+        "button-text": "計算する",
+        "result-text": "ROI: "
+      }
+    };
+
+    let currentLang = "en";
+    function setLang(lang) {
+      currentLang = lang;
+      document.getElementById("calc-title").innerText = translations[lang]["calc-title"];
+      document.getElementById("initial-label").innerText = translations[lang]["initial-label"];
+      document.getElementById("final-label").innerText = translations[lang]["final-label"];
+      document.getElementById("calc-button").innerText = translations[lang]["button-text"];
+      document.getElementById("result").innerText = "";
     }
   </script>
 </head>
 <body>
   <header>
-    <h1>Investment Calculator</h1>
+    <h1 id="calc-title">Investment ROI Calculator</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="crypto.html">Crypto</a>
@@ -33,19 +74,25 @@
       <a href="global.html">Global</a>
       <a href="analysis.html">Analysis</a>
     </nav>
+    <!-- 언어 선택 -->
+    <div id="lang-switch">
+      <button onclick="setLang('en')">English</button>
+      <button onclick="setLang('ko')">한국어</button>
+      <button onclick="setLang('zh')">中文</button>
+      <button onclick="setLang('ja')">日本語</button>
+    </div>
   </header>
 
   <main>
     <section>
-      <h2>투자 수익률 계산기</h2>
       <form onsubmit="event.preventDefault(); calculateROI();">
-        <label for="initial">초기 투자금액 (₩):</label><br>
+        <label id="initial-label" for="initial">Initial Investment (₩):</label><br>
         <input type="number" id="initial" required><br><br>
 
-        <label for="final">최종 금액 (₩):</label><br>
+        <label id="final-label" for="final">Final Amount (₩):</label><br>
         <input type="number" id="final" required><br><br>
 
-        <button type="submit">계산하기</button>
+        <button id="calc-button" type="submit">Calculate</button>
       </form>
       <p id="result" style="margin-top:1rem; font-weight:bold;"></p>
     </section>
