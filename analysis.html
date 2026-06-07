@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
-    <title>Stock Analysis | 종목진단</title>
+    <title>Stock Analysis Terminal</title>
 </head>
 <body>
     <div class="header">
-        <h1>STOCK ANALYSIS & RESEARCH</h1>
+        <h1>STOCK RESEARCH TERMINAL</h1>
     </div>
 
     <div class="tabs">
@@ -15,42 +15,41 @@
         <a href="market.html" class="tab-link">기술분석</a>
         <a href="news.html" class="tab-link">실적발표</a>
         <a href="crypto.html" class="tab-link">코인</a>
-        <a href="forex.html" class="tab-link">환율</a>
-        <a href="sentiment.html" class="tab-link">공포지수</a>
         <a href="global.html" class="tab-link">세계지수</a>
-        <a href="analysis.html" class="tab-link">종목진단</a>
-        <a href="predict.html" class="tab-link">예측시장</a>
-        <a href="calculator.html" class="tab-link">퀀트계산기</a>
+        <a href="analysis.html" class="tab-link active">종목진단</a>
     </div>
 
     <div class="dashboard">
-        <div class="card" style="grid-column: span 2;">
-            <h2>🔍 종목 심층 분석 (검색 가능)</h2>
-            <div class="tradingview-widget-container">
-                <script src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-info.js" async>
-                {
-                    "symbol": "NASDAQ:AAPL",
-                    "width": "100%",
-                    "locale": "kr",
-                    "colorTheme": "dark",
-                    "isTransparent": false
-                }
-                </script>
-            </div>
-            <div class="tradingview-widget-container" style="margin-top: 20px;">
-                <script src="https://s3.tradingview.com/external-embedding/embed-widget-financials.js" async>
-                {
-                    "symbol": "NASDAQ:AAPL",
-                    "colorTheme": "dark",
-                    "isTransparent": false,
-                    "displayMode": "regular",
-                    "width": "100%",
-                    "height": "800",
-                    "locale": "kr"
-                }
-                </script>
-            </div>
+        <div class="card">
+            <h2>🔎 종목 검색 및 심층 진단</h2>
+            <div id="stock-info" class="widget-box" style="min-height: 400px;"></div>
+        </div>
+        
+        <div class="card">
+            <h2>📊 핵심 재무 데이터 (Fundamental)</h2>
+            <div id="financial-data" class="widget-box" style="min-height: 600px;"></div>
         </div>
     </div>
+
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script type="text/javascript">
+        // 1. 종목 상세 정보 (검색창 내장)
+        new TradingView.widget({
+            "container_id": "stock-info",
+            "width": "100%", "height": "400",
+            "symbol": "NASDAQ:AAPL",
+            "theme": "dark", "locale": "kr",
+            "allow_symbol_change": true
+        });
+
+        // 2. 재무제표 요약
+        new TradingView.widget({
+            "container_id": "financial-data",
+            "width": "100%", "height": "600",
+            "symbol": "NASDAQ:AAPL",
+            "colorTheme": "dark", "locale": "kr",
+            "isTransparent": false
+        });
+    </script>
 </body>
 </html>
