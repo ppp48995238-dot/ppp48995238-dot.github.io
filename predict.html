@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Predict Markets - GlobalEdge</title>
-  <meta name="description" content="예측시장 보조지표와 확률 기반 데이터 시각화">
+  <title>Prediction Markets - GlobalEdge</title>
+  <meta name="description" content="Prediction market indicators and probability-based data visualization">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>Predict Markets</h1>
+    <h1>🔮 Prediction Markets</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="crypto.html">Crypto</a>
@@ -21,33 +21,40 @@
       <a href="analysis.html">Analysis</a>
       <a href="calculator.html">Calculator</a>
     </nav>
+    <!-- 언어 선택 -->
+    <div id="lang-switch">
+      <button onclick="setLang('en')">English</button>
+      <button onclick="setLang('ko')">한국어</button>
+      <button onclick="setLang('zh')">中文</button>
+      <button onclick="setLang('ja')">日本語</button>
+    </div>
   </header>
 
   <main>
     <section>
-      <h2>예측시장 보조지표</h2>
-      <p>실시간 확률 기반 데이터로 시장 방향성을 시각화합니다.</p>
+      <h2 id="predict-title">Prediction Indicators</h2>
+      <p id="predict-desc">Probability-based data visualization from prediction markets.</p>
       <table border="1" style="width:100%; text-align:center;">
         <thead>
           <tr>
-            <th>이벤트</th>
-            <th>상승 확률</th>
-            <th>하락 확률</th>
+            <th id="event-col">Event</th>
+            <th id="up-col">Up Probability</th>
+            <th id="down-col">Down Probability</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>BTC 70K 돌파</td>
+            <td>BTC 70K Breakout</td>
             <td>65%</td>
             <td>35%</td>
           </tr>
           <tr>
-            <td>EUR/USD 1.10 유지</td>
+            <td>EUR/USD holds 1.10</td>
             <td>58%</td>
             <td>42%</td>
           </tr>
           <tr>
-            <td>S&P500 6000 도달</td>
+            <td>S&P500 reaches 6000</td>
             <td>52%</td>
             <td>48%</td>
           </tr>
@@ -56,10 +63,9 @@
     </section>
 
     <section>
-      <h2>데이터 시각화</h2>
-      <p>추후 API 연동으로 Polymarket 스타일 확률 그래프를 표시할 수 있습니다.</p>
+      <h2 id="poly-title">Polymarket Integration</h2>
       <div style="background:#161b22; padding:2rem; text-align:center;">
-        [예측시장 그래프 자리]
+        [Polymarket API 연동 자리: 실시간 확률 그래프 표시]
       </div>
     </section>
   </main>
@@ -67,5 +73,49 @@
   <footer>
     <p>&copy; 2026 GlobalEdge. All rights reserved.</p>
   </footer>
+
+  <script>
+    // 다국어 지원
+    const translations = {
+      en: {
+        "predict-title": "Prediction Indicators",
+        "predict-desc": "Probability-based data visualization from prediction markets.",
+        "event-col": "Event",
+        "up-col": "Up Probability",
+        "down-col": "Down Probability",
+        "poly-title": "Polymarket Integration"
+      },
+      ko: {
+        "predict-title": "예측시장 보조지표",
+        "predict-desc": "예측시장의 확률 기반 데이터 시각화.",
+        "event-col": "이벤트",
+        "up-col": "상승 확률",
+        "down-col": "하락 확률",
+        "poly-title": "폴리마켓 연동"
+      },
+      zh: {
+        "predict-title": "预测市场指标",
+        "predict-desc": "来自预测市场的概率数据可视化。",
+        "event-col": "事件",
+        "up-col": "上涨概率",
+        "down-col": "下跌概率",
+        "poly-title": "Polymarket集成"
+      },
+      ja: {
+        "predict-title": "予測市場指標",
+        "predict-desc": "予測市場からの確率ベースのデータ可視化。",
+        "event-col": "イベント",
+        "up-col": "上昇確率",
+        "down-col": "下降確率",
+        "poly-title": "Polymarket連携"
+      }
+    };
+
+    function setLang(lang) {
+      for (const id in translations[lang]) {
+        document.getElementById(id).innerText = translations[lang][id];
+      }
+    }
+  </script>
 </body>
 </html>
