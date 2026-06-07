@@ -3,53 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
-    <title>Stock Analysis Terminal</title>
+    <title>종목 심층 진단 | Research Terminal</title>
+    <style>
+        /* 페이지 전용 레이아웃: 위젯 꽉 채우기용 */
+        .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 1600px; margin: 20px auto; padding: 0 10px; }
+        .card { background: #131722; padding: 20px; border: 1px solid #2f3239; border-radius: 4px; }
+        .full-width { grid-column: span 2; }
+    </style>
 </head>
 <body>
-    <div class="header">
-        <h1>STOCK RESEARCH TERMINAL</h1>
-    </div>
-
-    <div class="tabs">
-        <a href="index.html" class="tab-link">시장종합</a>
-        <a href="market.html" class="tab-link">기술분석</a>
-        <a href="news.html" class="tab-link">실적발표</a>
-        <a href="crypto.html" class="tab-link">코인</a>
-        <a href="global.html" class="tab-link">세계지수</a>
-        <a href="analysis.html" class="tab-link active">종목진단</a>
-    </div>
-
-    <div class="dashboard">
-        <div class="card">
-            <h2>🔎 종목 검색 및 심층 진단</h2>
-            <div id="stock-info" class="widget-box" style="min-height: 400px;"></div>
+    <div class="navbar">
+        <div class="dropdown"><a class="dropbtn">시장 ▼</a>
+            <div class="dropdown-content"><a href="index.html">시장종합</a><a href="global.html">세계지수</a></div>
         </div>
-        
+        <div class="dropdown"><a class="dropbtn">분석 ▼</a>
+            <div class="dropdown-content"><a href="market.html">기술분석</a><a href="analysis.html">종목진단</a></div>
+        </div>
+        <a href="news.html" class="dropbtn">뉴스</a>
+        <a href="calculator.html" class="dropbtn">계산기</a>
+    </div>
+
+    <div class="grid-container">
+        <div class="card full-width">
+            <h2>🔎 종목 검색 및 상세 진단</h2>
+            <div id="symbol-info"></div>
+        </div>
         <div class="card">
-            <h2>📊 핵심 재무 데이터 (Fundamental)</h2>
-            <div id="financial-data" class="widget-box" style="min-height: 600px;"></div>
+            <h2>📊 핵심 재무 지표</h2>
+            <div id="financial-data"></div>
+        </div>
+        <div class="card">
+            <h2>📈 기술적 분석 신호</h2>
+            <div id="tech-analysis"></div>
         </div>
     </div>
 
-    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-    <script type="text/javascript">
-        // 1. 종목 상세 정보 (검색창 내장)
-        new TradingView.widget({
-            "container_id": "stock-info",
-            "width": "100%", "height": "400",
-            "symbol": "NASDAQ:AAPL",
-            "theme": "dark", "locale": "kr",
-            "allow_symbol_change": true
-        });
-
-        // 2. 재무제표 요약
-        new TradingView.widget({
-            "container_id": "financial-data",
-            "width": "100%", "height": "600",
-            "symbol": "NASDAQ:AAPL",
-            "colorTheme": "dark", "locale": "kr",
-            "isTransparent": false
-        });
+    <script src="https://s3.tradingview.com/tv.js"></script>
+    <script>
+        // 1. 종목 상세 (검색 내장)
+        new TradingView.widget({ "container_id": "symbol-info", "width": "100%", "height": 400, "symbol": "NASDAQ:AAPL", "theme": "dark", "locale": "kr", "allow_symbol_change": true });
+        // 2. 재무 지표
+        new TradingView.widget({ "container_id": "financial-data", "width": "100%", "height": 500, "symbol": "NASDAQ:AAPL", "theme": "dark", "locale": "kr", "isTransparent": false });
+        // 3. 기술 분석
+        new TradingView.widget({ "container_id": "tech-analysis", "width": "100%", "height": 500, "symbol": "NASDAQ:AAPL", "theme": "dark", "locale": "kr" });
     </script>
 </body>
 </html>
