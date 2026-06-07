@@ -1,126 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crypto Markets - GlobalEdge</title>
-  <meta name="description" content="Real-time cryptocurrency charts, news, and sentiment indicators">
-  <link rel="stylesheet" href="style.css">
-  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Crypto Market - Bitcoin, Ethereum, Altcoins</title>
+<meta name="description" content="Live cryptocurrency prices, Bitcoin, Ethereum, altcoins charts and market trends.">
+
+<link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
-  <header>
-    <h1>💹 Crypto Markets</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="forex.html">Forex</a>
-      <a href="market.html">Markets</a>
-      <a href="predict.html">Predict</a>
-      <a href="sentiment.html">Sentiment</a>
-      <a href="news.html">News</a>
-      <a href="global.html">Global</a>
-      <a href="analysis.html">Analysis</a>
-      <a href="calculator.html">Calculator</a>
-    </nav>
-    <!-- 언어 선택 -->
-    <div id="lang-switch">
-      <button onclick="setLang('en')">English</button>
-      <button onclick="setLang('ko')">한국어</button>
-      <button onclick="setLang('zh')">中文</button>
-      <button onclick="setLang('ja')">日本語</button>
-    </div>
-  </header>
 
-  <main style="display:grid; grid-template-columns:1fr 1fr; gap:2rem;">
-    <section>
-      <h2 id="btc-title">Bitcoin (BTC/USDT)</h2>
-      <div id="btc-chart"></div>
-      <script>
-        new TradingView.widget({
-          "width": "100%",
-          "height": 400,
-          "symbol": "BINANCE:BTCUSDT",
-          "interval": "30",
-          "timezone": "Asia/Seoul",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "container_id": "btc-chart"
-        });
-      </script>
-    </section>
+<header class="topbar">
+  <div class="logo">₿ Crypto Market</div>
+  <div class="subtitle">Bitcoin • Ethereum • Altcoins • Market Trends</div>
+</header>
 
-    <section>
-      <h2 id="eth-title">Ethereum (ETH/USDT)</h2>
-      <div id="eth-chart"></div>
-      <script>
-        new TradingView.widget({
-          "width": "100%",
-          "height": 400,
-          "symbol": "BINANCE:ETHUSDT",
-          "interval": "30",
-          "timezone": "Asia/Seoul",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "container_id": "eth-chart"
-        });
-      </script>
-    </section>
+<nav class="menu">
+  <a href="index.html">Home</a>
+  <a href="market.html">Markets</a>
+  <a href="crypto.html">Crypto</a>
+  <a href="forex.html">Forex</a>
+  <a href="news.html">News</a>
+  <a href="predict.html">Predict</a>
+</nav>
 
-    <section style="grid-column:1 / span 2;">
-      <h2 id="crypto-news">Crypto News Feed</h2>
-      <div style="background:#161b22; padding:1rem;">
-        [API 연동 자리: Investing.com 스타일 암호화폐 뉴스 자동 표시]
-      </div>
-    </section>
+<!-- CRYPTO SUMMARY -->
+<section class="stats-bar">
 
-    <section style="grid-column:1 / span 2;">
-      <h2 id="poly-title">Prediction Market Indicators</h2>
-      <div style="background:#161b22; padding:1rem;">
-        [Polymarket API 연동 자리: BTC/ETH 가격 관련 확률 기반 보조지표]
-      </div>
-    </section>
-  </main>
+  <div class="stat">
+    <h4>BTC Dominance</h4>
+    <p>High</p>
+  </div>
 
-  <footer>
-    <p>&copy; 2026 GlobalEdge. All rights reserved.</p>
-  </footer>
+  <div class="stat">
+    <h4>Market Mood</h4>
+    <p>Volatile</p>
+  </div>
 
-  <script>
-    // 다국어 지원
-    const translations = {
-      en: {
-        "btc-title": "Bitcoin (BTC/USDT)",
-        "eth-title": "Ethereum (ETH/USDT)",
-        "crypto-news": "Crypto News Feed",
-        "poly-title": "Prediction Market Indicators"
-      },
-      ko: {
-        "btc-title": "비트코인 (BTC/USDT)",
-        "eth-title": "이더리움 (ETH/USDT)",
-        "crypto-news": "암호화폐 뉴스 피드",
-        "poly-title": "예측시장 보조지표"
-      },
-      zh: {
-        "btc-title": "比特币 (BTC/USDT)",
-        "eth-title": "以太坊 (ETH/USDT)",
-        "crypto-news": "加密货币新闻",
-        "poly-title": "预测市场指标"
-      },
-      ja: {
-        "btc-title": "ビットコイン (BTC/USDT)",
-        "eth-title": "イーサリアム (ETH/USDT)",
-        "crypto-news": "暗号通貨ニュース",
-        "poly-title": "予測市場指標"
-      }
-    };
+  <div class="stat">
+    <h4>Altcoins</h4>
+    <p>Active</p>
+  </div>
 
-    function setLang(lang) {
-      for (const id in translations[lang]) {
-        document.getElementById(id).innerText = translations[lang][id];
-      }
-    }
-  </script>
+  <div class="stat">
+    <h4>Trend</h4>
+    <p>Sideways</p>
+  </div>
+
+</section>
+
+<!-- MAIN GRID -->
+<section class="grid">
+
+  <!-- BITCOIN -->
+  <div class="card large">
+    <h2>₿ Bitcoin (BTC/USDT)</h2>
+    <iframe 
+      src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:BTCUSDT&interval=60&theme=dark"
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <!-- ETH -->
+  <div class="card">
+    <h3>Ξ Ethereum</h3>
+    <iframe 
+      src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:ETHUSDT&interval=60&theme=dark"
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <!-- BINANCE COIN -->
+  <div class="card">
+    <h3>BNB</h3>
+    <iframe 
+      src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:BNBUSDT&interval=60&theme=dark"
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <!-- SOLANA -->
+  <div class="card">
+    <h3>SOL</h3>
+    <iframe 
+      src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:SOLUSDT&interval=60&theme=dark"
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <!-- MARKET INSIGHT -->
+  <div class="card">
+    <h3>📊 Crypto Insight</h3>
+    <ul>
+      <li>Bitcoin still leading overall market direction</li>
+      <li>Altcoins following BTC momentum</li>
+      <li>High volatility due to macro uncertainty</li>
+      <li>Institutional flow still dominant factor</li>
+    </ul>
+  </div>
+
+  <!-- TREND ANALYSIS -->
+  <div class="card">
+    <h3>📉 Trend Analysis</h3>
+    <p>
+      Crypto markets are currently in a consolidation phase,
+      with liquidity shifting between BTC and major altcoins.
+    </p>
+  </div>
+
+  <!-- FEAR & GREED -->
+  <div class="card">
+    <h3>😱 Fear & Greed Index</h3>
+    <p>Loading sentiment...</p>
+    <p>Market psychology indicator (manual update or API later)</p>
+  </div>
+
+  <!-- AD SPACE -->
+  <div class="card adbox">
+    <h3>Sponsored</h3>
+    <p>AdSense placement area (Crypto page high CTR)</p>
+  </div>
+
+</section>
+
+<!-- SEO CONTENT BLOCK -->
+<section class="card" style="margin:20px;">
+  <h2>💡 What is happening in Crypto Market?</h2>
+  <p>
+    The cryptocurrency market is highly influenced by Bitcoin movements,
+    macroeconomic conditions, and institutional adoption trends.
+    Altcoins typically follow Bitcoin direction with higher volatility.
+  </p>
+</section>
+
+<footer>
+  <p>© 2026 Finance Hub - Crypto market data powered by TradingView</p>
+</footer>
+
 </body>
 </html>
