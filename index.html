@@ -6,46 +6,42 @@
     <title>Global Finance Terminal</title>
 </head>
 <body>
-    <div class="header">
-        <h1>GLOBAL FINANCE TERMINAL</h1>
-    </div>
-
-    <div class="tabs">
-        <a href="index.html" class="tab-link active">시장종합</a>
-        <a href="market.html" class="tab-link">기술분석</a>
-        <a href="news.html" class="tab-link">실적발표</a>
-        <a href="crypto.html" class="tab-link">코인</a>
-        <a href="global.html" class="tab-link">세계지수</a>
-        <a href="analysis.html" class="tab-link">종목진단</a>
-    </div>
-
-    <div class="dashboard">
-        <div class="card">
-            <h2>📊 시장 종합 실시간 지표</h2>
-            <div id="market-overview" class="widget-box"></div>
+    <div class="navbar">
+        <div class="dropdown"><a class="dropbtn">시장 ▼</a>
+            <div class="dropdown-content"><a href="index.html">시장종합</a><a href="global.html">세계지수</a></div>
         </div>
+        <div class="dropdown"><a class="dropbtn">분석 ▼</a>
+            <div class="dropdown-content"><a href="market.html">기술분석</a><a href="analysis.html">종목진단</a></div>
+        </div>
+        <a href="news.html" class="dropbtn">뉴스</a>
+        <a href="calculator.html" class="dropbtn">계산기</a>
+    </div>
 
+    <div class="dashboard" style="grid-template-columns: 2fr 1fr;">
         <div class="card">
-            <h2>📰 실시간 경제 뉴스 & 이슈</h2>
-            <div id="news-timeline" class="widget-box"></div>
+            <h2>📊 실시간 주요 시장 지표</h2>
+            <div id="market-quotes"></div>
+        </div>
+        <div class="card">
+            <h2>📰 최신 경제 뉴스</h2>
+            <div id="news-timeline"></div>
         </div>
     </div>
 
-    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-    <script type="text/javascript">
-        // 시장 종합
-        new TradingView.widget({
-            "container_id": "market-overview",
-            "width": "100%", "height": "600",
-            "symbols": [ {"s": "SP:SPX"}, {"s": "NASDAQ:NDX"}, {"s": "INDEX:DJI"}, {"s": "KRX:KOSPI"} ],
-            "theme": "dark", "locale": "kr", "allow_symbol_change": true
-        });
-        // 뉴스
-        new TradingView.widget({
-            "container_id": "news-timeline",
-            "width": "100%", "height": "800",
-            "feedMode": "all_symbols", "colorTheme": "dark", "locale": "kr"
-        });
+    <script src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
+    {
+      "width": "100%", "height": "700",
+      "symbolsGroups": [
+        { "name": "지수", "symbols": [{"s": "SP:SPX"}, {"s": "NASDAQ:NDX"}, {"s": "INDEX:DJI"}, {"s": "KRX:KOSPI"}] },
+        { "name": "원자재", "symbols": [{"s": "TVC:GOLD"}, {"s": "TVC:USOIL"}] }
+      ],
+      "colorTheme": "dark", "locale": "kr"
+    }
+    </script>
+    <script src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+    {
+      "feedMode": "all_symbols", "colorTheme": "dark", "height": "700", "width": "100%", "locale": "kr"
+    }
     </script>
 </body>
 </html>
