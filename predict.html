@@ -2,38 +2,78 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Prediction Market - Crypto & Stock Forecasts</title>
-<meta name="description" content="Predict Bitcoin, stocks, and market movements. Community-driven forecast platform.">
+<title>Prediction Market - Bitcoin Stocks Forecast</title>
+
+<meta name="description" content="Community prediction market for Bitcoin, stocks, Nasdaq and global financial forecasts.">
 
 <link rel="stylesheet" href="style.css">
 
 <style>
-.vote-btn {
-  padding: 10px 15px;
-  margin: 5px;
-  border: none;
-  cursor: pointer;
-  border-radius: 8px;
-  font-weight: bold;
+body { margin:0; font-family:Arial; background:#0b1220; color:white; }
+
+.topbar {
+  padding:20px;
+  text-align:center;
+  background:#111827;
 }
 
-.yes { background: #16a34a; color: white; }
-.no { background: #dc2626; color: white; }
+.menu {
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  padding:10px;
+  background:#1f2937;
+}
 
-.result-bar {
-  height: 10px;
-  background: #1f2937;
-  border-radius: 10px;
-  overflow: hidden;
-  margin-top: 10px;
+.menu a {
+  color:white;
+  text-decoration:none;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:15px;
+  padding:20px;
+}
+
+.card {
+  background:#111827;
+  padding:15px;
+  border-radius:12px;
+}
+
+button {
+  padding:10px;
+  margin:5px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.yes { background:#22c55e; color:white; }
+.no { background:#ef4444; color:white; }
+
+.bar {
+  height:10px;
+  background:#374151;
+  border-radius:10px;
+  margin-top:10px;
+  overflow:hidden;
 }
 
 .fill {
-  height: 100%;
-  background: #3b82f6;
-  width: 50%;
+  height:100%;
+  background:#3b82f6;
+  width:50%;
+  transition:0.3s;
+}
+
+small {
+  color:#9ca3af;
 }
 </style>
 
@@ -41,127 +81,119 @@
 
 <body>
 
-<header class="topbar">
-  <div class="logo">📊 Prediction Market</div>
-  <div class="subtitle">Community Forecast • Crypto • Stocks • Macro</div>
-</header>
+<div class="topbar">
+<h1>📊 Prediction Market</h1>
+<p>Community Forecast • Bitcoin • Stocks • Macro</p>
+</div>
 
-<nav class="menu">
-  <a href="index.html">Home</a>
-  <a href="market.html">Markets</a>
-  <a href="crypto.html">Crypto</a>
-  <a href="forex.html">Forex</a>
-  <a href="news.html">News</a>
-  <a href="predict.html">Predict</a>
-</nav>
+<div class="menu">
+<a href="index.html">Home</a>
+<a href="crypto.html">Crypto</a>
+<a href="market.html">Markets</a>
+<a href="news.html">News</a>
+<a href="predict.html">Predict</a>
+</div>
 
-<!-- MARKET STATS -->
-<section class="stats-bar">
+<div class="grid">
 
-  <div class="stat">
-    <h4>Active Votes</h4>
-    <p>1,248</p>
-  </div>
+<div class="card">
+<h3>₿ Will Bitcoin reach $100,000?</h3>
 
-  <div class="stat">
-    <h4>Markets Sentiment</h4>
-    <p>Mixed</p>
-  </div>
+<button class="yes" onclick="vote('btc','yes')">YES</button>
+<button class="no" onclick="vote('btc','no')">NO</button>
 
-  <div class="stat">
-    <h4>Top Asset</h4>
-    <p>Bitcoin</p>
-  </div>
+<div class="bar">
+<div id="btc_bar" class="fill"></div>
+</div>
 
-  <div class="stat">
-    <h4>Forecast Type</h4>
-    <p>Short Term</p>
-  </div>
+<small id="btc_text">50% YES / 50% NO</small>
+</div>
 
-</section>
+<div class="card">
+<h3>📈 Will Nasdaq hit new ATH?</h3>
 
-<!-- QUESTIONS -->
-<section class="grid">
+<button class="yes" onclick="vote('nasdaq','yes')">YES</button>
+<button class="no" onclick="vote('nasdaq','no')">NO</button>
 
-  <!-- QUESTION 1 -->
-  <div class="card">
-    <h3>₿ Will Bitcoin go above $100,000?</h3>
+<div class="bar">
+<div id="nasdaq_bar" class="fill"></div>
+</div>
 
-    <button class="vote-btn yes" onclick="vote('q1','yes')">YES</button>
-    <button class="vote-btn no" onclick="vote('q1','no')">NO</button>
+<small id="nasdaq_text">50% YES / 50% NO</small>
+</div>
 
-    <div class="result-bar">
-      <div id="q1bar" class="fill"></div>
-    </div>
+<div class="card">
+<h3>💱 Will USD strengthen further?</h3>
 
-    <p id="q1text">50% YES / 50% NO</p>
-  </div>
+<button class="yes" onclick="vote('usd','yes')">YES</button>
+<button class="no" onclick="vote('usd','no')">NO</button>
 
-  <!-- QUESTION 2 -->
-  <div class="card">
-    <h3>📈 Will Nasdaq hit new ATH this month?</h3>
+<div class="bar">
+<div id="usd_bar" class="fill"></div>
+</div>
 
-    <button class="vote-btn yes" onclick="vote('q2','yes')">YES</button>
-    <button class="vote-btn no" onclick="vote('q2','no')">NO</button>
+<small id="usd_text">50% YES / 50% NO</small>
+</div>
 
-    <div class="result-bar">
-      <div id="q2bar" class="fill"></div>
-    </div>
+<div class="card">
+<h3>📊 Market Sentiment</h3>
+<p id="sentiment">Loading...</p>
+</div>
 
-    <p id="q2text">50% YES / 50% NO</p>
-  </div>
+<div class="card">
+<h3>📢 Sponsored</h3>
+<p>Ad Space (Google AdSense)</p>
+</div>
 
-  <!-- QUESTION 3 -->
-  <div class="card">
-    <h3>💱 Will USD strengthen further?</h3>
-
-    <button class="vote-btn yes" onclick="vote('q3','yes')">YES</button>
-    <button class="vote-btn no" onclick="vote('q3','no')">NO</button>
-
-    <div class="result-bar">
-      <div id="q3bar" class="fill"></div>
-    </div>
-
-    <p id="q3text">50% YES / 50% NO</p>
-  </div>
-
-</section>
-
-<!-- EXPLANATION -->
-<section class="card" style="margin:20px;">
-  <h2>💡 How Prediction Market Works</h2>
-  <p>
-    Users vote on future market outcomes such as Bitcoin price movements,
-    stock market trends, and macroeconomic events.
-  </p>
-
-  <p>
-    This creates a crowd-sourced sentiment indicator similar to professional prediction markets.
-  </p>
-</section>
-
-<footer>
-  <p>© 2026 Finance Hub - Community Prediction Market</p>
-</footer>
+</div>
 
 <script>
-const votes = {
-  q1: { yes: 50, no: 50 },
-  q2: { yes: 50, no: 50 },
-  q3: { yes: 50, no: 50 }
+
+// LOAD LOCAL DATA OR DEFAULT
+let data = JSON.parse(localStorage.getItem("predict_data")) || {
+  btc:{yes:50,no:50},
+  nasdaq:{yes:50,no:50},
+  usd:{yes:50,no:50}
 };
 
-function vote(q, type) {
-  if (type === "yes") votes[q].yes++;
-  else votes[q].no++;
+function updateUI(key){
 
-  const total = votes[q].yes + votes[q].no;
-  const yesPercent = Math.round((votes[q].yes / total) * 100);
+  const total = data[key].yes + data[key].no;
+  const yesPercent = Math.round((data[key].yes / total) * 100);
 
-  document.getElementById(q + "bar").style.width = yesPercent + "%";
-  document.getElementById(q + "text").innerText =
-    yesPercent + "% YES / " + (100 - yesPercent) + "% NO";
+  document.getElementById(key+"_bar").style.width = yesPercent + "%";
+  document.getElementById(key+"_text").innerText =
+    yesPercent + "% YES / " + (100-yesPercent) + "% NO";
 }
+
+function vote(key, type){
+
+  data[key][type]++;
+
+  localStorage.setItem("predict_data", JSON.stringify(data));
+
+  updateUI(key);
+  updateSentiment();
+}
+
+function updateSentiment(){
+
+  const btcYes = data.btc.yes / (data.btc.yes + data.btc.no);
+
+  let text = "Neutral market sentiment.";
+
+  if(btcYes > 0.6) text = "Bullish sentiment detected in crypto market.";
+  if(btcYes < 0.4) text = "Bearish sentiment dominates crypto market.";
+
+  document.getElementById("sentiment").innerText = text;
+}
+
+// INIT
+updateUI("btc");
+updateUI("nasdaq");
+updateUI("usd");
+updateSentiment();
+
 </script>
 
 </body>
