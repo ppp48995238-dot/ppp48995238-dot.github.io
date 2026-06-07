@@ -3,66 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
-    <title>Technical Analysis Terminal</title>
+    <title>Technical Analysis | 전문 차트</title>
 </head>
 <body>
     <div class="header">
-        <h1>TECHNICAL ANALYSIS TERMINAL</h1>
+        <h1>TECHNICAL ANALYSIS</h1>
+        <div id="tv-search-container" style="width: 100%; max-width: 600px; margin: 0 auto;"></div>
     </div>
 
     <div class="tabs">
         <a href="index.html" class="tab-link">시장종합</a>
-        <a href="market.html" class="tab-link">기술분석</a>
+        <a href="market.html" class="tab-link active">기술분석</a>
         <a href="news.html" class="tab-link">실적발표</a>
         <a href="crypto.html" class="tab-link">코인</a>
-        <a href="forex.html" class="tab-link">환율</a>
-        <a href="sentiment.html" class="tab-link">공포지수</a>
-        <a href="global.html" class="tab-link">세계지수</a>
-        <a href="analysis.html" class="tab-link">종목진단</a>
-        <a href="predict.html" class="tab-link">예측시장</a>
-        <a href="calculator.html" class="tab-link">퀀트계산기</a>
     </div>
 
     <div class="dashboard">
-        <div class="card" style="grid-column: span 2;">
-            <h2>📈 종목 검색 및 기술적 차트 (검색창 내장)</h2>
-            <div class="tradingview-widget-container">
-                <script src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-                {
-                    "width": "100%",
-                    "height": "700",
-                    "symbol": "NASDAQ:AAPL",
-                    "interval": "D",
-                    "timezone": "Asia/Seoul",
-                    "theme": "dark",
-                    "style": "1",
-                    "locale": "kr",
-                    "allow_symbol_change": true,
-                    "calendar": true,
-                    "support_host": "https://www.tradingview.com"
-                }
-                </script>
-            </div>
-        </div>
-
-        <div class="card" style="grid-column: span 2;">
-            <h2>🔥 S&P 500 섹터별 히트맵</h2>
-            <div class="tradingview-widget-container">
-                <script src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
-                {
-                    "exchange": "US",
-                    "dataSource": "SPX500",
-                    "grouping": "sector",
-                    "filled": true,
-                    "colorTheme": "dark",
-                    "rows": 15,
-                    "cols": 25,
-                    "width": "100%",
-                    "height": "700"
-                }
-                </script>
-            </div>
+        <div class="card">
+            <h2>📈 실시간 종목 차트 & 검색</h2>
+            <div id="tradingview-chart" class="widget-box"></div>
         </div>
     </div>
+
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script type="text/javascript">
+        // 1. 차트 위젯
+        new TradingView.widget({
+            "container_id": "tradingview-chart",
+            "width": "100%", "height": "600",
+            "symbol": "NASDAQ:AAPL",
+            "interval": "D", "timezone": "Asia/Seoul", "theme": "dark",
+            "style": "1", "locale": "kr", "toolbar_bg": "#f1f3f6",
+            "enable_publishing": false, "allow_symbol_change": true,
+            "details": true, "hotlist": true, "calendar": true
+        });
+    </script>
 </body>
 </html>
