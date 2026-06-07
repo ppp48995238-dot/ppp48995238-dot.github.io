@@ -1,7 +1,64 @@
-<!DOCTYPE html><html><head><link rel="stylesheet" href="style.css"><title>Market</title></head><body>
-<div class="header"><h1>Technical Analysis</h1></div>
-<div class="tabs">
-    <a href="index.html" class="tab-link">홈</a><a href="market.html" class="tab-link">기술분석</a><a href="news.html" class="tab-link">경제뉴스</a><a href="crypto.html" class="tab-link">코인</a><a href="forex.html" class="tab-link">외환</a><a href="sentiment.html" class="tab-link">심리분석</a><a href="global.html" class="tab-link">글로벌</a><a href="analysis.html" class="tab-link">기업분석</a><a href="predict.html" class="tab-link">예측시장</a><a href="calculator.html" class="tab-link">계산기</a>
-</div>
-<div class="dashboard"><div class="card" style="grid-column: span 2;"><h2>🔥 히트맵</h2><div class="tradingview-widget-container"><script src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>{"dataSource": "SPX500", "colorTheme": "dark", "height": 600}</script></div></div></div>
-</body></html>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Technical Analysis | 기술분석</title>
+</head>
+<body>
+    <div class="header">
+        <h1>TECHNICAL ANALYSIS</h1>
+    </div>
+
+    <div class="tabs">
+        <a href="index.html" class="tab-link">시장종합</a>
+        <a href="market.html" class="tab-link">기술분석</a>
+        <a href="news.html" class="tab-link">실적발표</a>
+        <a href="crypto.html" class="tab-link">코인</a>
+        <a href="forex.html" class="tab-link">환율</a>
+        <a href="sentiment.html" class="tab-link">공포지수</a>
+        <a href="global.html" class="tab-link">세계지수</a>
+        <a href="analysis.html" class="tab-link">종목진단</a>
+        <a href="predict.html" class="tab-link">예측시장</a>
+        <a href="calculator.html" class="tab-link">퀀트계산기</a>
+    </div>
+
+    <div class="dashboard">
+        <div class="card" style="grid-column: span 2;">
+            <h2>🔥 S&P 500 시장 히트맵</h2>
+            <div class="tradingview-widget-container">
+                <script src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
+                {
+                    "exchange": "US",
+                    "dataSource": "SPX500",
+                    "grouping": "sector",
+                    "filled": true,
+                    "colorTheme": "dark",
+                    "width": "100%",
+                    "height": "600"
+                }
+                </script>
+            </div>
+        </div>
+
+        <div class="card" style="grid-column: span 2;">
+            <h2>📈 나스닥 100 고급 차트</h2>
+            <div class="tradingview-widget-container">
+                <script src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                {
+                    "symbol": "NASDAQ:NDX",
+                    "interval": "D",
+                    "timezone": "Asia/Seoul",
+                    "theme": "dark",
+                    "style": "1",
+                    "locale": "kr",
+                    "allow_symbol_change": true,
+                    "width": "100%",
+                    "height": "600"
+                }
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
