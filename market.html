@@ -1,116 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Global Markets - GlobalEdge</title>
-  <meta name="description" content="Real-time global stock indices, news, and sentiment indicators">
-  <link rel="stylesheet" href="style.css">
-  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Markets - Global Financial Overview</title>
+<meta name="description" content="Live global markets: stocks, indices, commodities, crypto overview.">
+
+<link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
-  <header>
-    <h1>📈 Global Markets</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="crypto.html">Crypto</a>
-      <a href="forex.html">Forex</a>
-      <a href="predict.html">Predict</a>
-      <a href="sentiment.html">Sentiment</a>
-      <a href="news.html">News</a>
-      <a href="global.html">Global</a>
-      <a href="analysis.html">Analysis</a>
-      <a href="calculator.html">Calculator</a>
-    </nav>
-    <!-- 언어 선택 -->
-    <div id="lang-switch">
-      <button onclick="setLang('en')">English</button>
-      <button onclick="setLang('ko')">한국어</button>
-      <button onclick="setLang('zh')">中文</button>
-      <button onclick="setLang('ja')">日本語</button>
-    </div>
-  </header>
 
-  <main style="display:grid; grid-template-columns:1fr 1fr; gap:2rem;">
-    <section>
-      <h2 id="spx-title">S&P500</h2>
-      <div id="spx-chart"></div>
-      <script>
-        new TradingView.widget({
-          "width": "100%",
-          "height": 400,
-          "symbol": "INDEX:SPX",
-          "interval": "30",
-          "timezone": "Asia/Seoul",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "container_id": "spx-chart"
-        });
-      </script>
-    </section>
+<header class="topbar">
+  <div class="logo">📊 Global Markets</div>
+  <div class="subtitle">Stocks • Indices • Commodities • Crypto Overview</div>
+</header>
 
-    <section>
-      <h2 id="nasdaq-title">Nasdaq</h2>
-      <div id="nasdaq-chart"></div>
-      <script>
-        new TradingView.widget({
-          "width": "100%",
-          "height": 400,
-          "symbol": "NASDAQ:IXIC",
-          "interval": "30",
-          "timezone": "Asia/Seoul",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "container_id": "nasdaq-chart"
-        });
-      </script>
-    </section>
+<nav class="menu">
+  <a href="index.html">Home</a>
+  <a href="market.html">Markets</a>
+  <a href="crypto.html">Crypto</a>
+  <a href="forex.html">Forex</a>
+  <a href="news.html">News</a>
+  <a href="predict.html">Predict</a>
+</nav>
 
-    <section>
-      <h2 id="nikkei-title">Nikkei 225</h2>
-      <div id="nikkei-chart"></div>
-      <script>
-        new TradingView.widget({
-          "width": "100%",
-          "height": 400,
-          "symbol": "INDEX:NKY",
-          "interval": "30",
-          "timezone": "Asia/Seoul",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "container_id": "nikkei-chart"
-        });
-      </script>
-    </section>
+<!-- MARKET SUMMARY STRIP -->
+<section class="stats-bar">
 
-    <section style="grid-column:1 / span 2;">
-      <h2 id="market-news">Market News Feed</h2>
-      <div style="background:#161b22; padding:1rem;">
-        [API 연동 자리: Investing.com 스타일 글로벌 시장 뉴스 자동 표시]
-      </div>
-    </section>
+  <div class="stat">
+    <h4>S&P 500</h4>
+    <p>Live Index</p>
+  </div>
 
-    <section style="grid-column:1 / span 2;">
-      <h2 id="poly-title">Prediction Market Indicators</h2>
-      <div style="background:#161b22; padding:1rem;">
-        [Polymarket API 연동 자리: 글로벌 지수 관련 확률 기반 보조지표]
-      </div>
-    </section>
-  </main>
+  <div class="stat">
+    <h4>NASDAQ</h4>
+    <p>Tech Heavy</p>
+  </div>
 
-  <footer>
-    <p>&copy; 2026 GlobalEdge. All rights reserved.</p>
-  </footer>
+  <div class="stat">
+    <h4>DOW JONES</h4>
+    <p>Industrial Index</p>
+  </div>
 
-  <script>
-    // 다국어 지원
-    const translations = {
-      en: {
-        "spx-title": "S&P500",
-        "nasdaq-title": "Nasdaq",
-        "nikkei-title": "Nikkei 225",
-        "market-news": "Market News Feed",
-        "poly
+  <div class="stat">
+    <h4>Crypto Market</h4>
+    <p>Volatile</p>
+  </div>
+
+</section>
+
+<!-- MAIN GRID -->
+<section class="grid">
+
+  <!-- S&P500 -->
+  <div class="card large">
+    <h2>📈 S&P 500 Index</h2>
+    <iframe 
+      src="https://s.tradingview.com/widgetembed/?symbol=SPX&interval=D&theme=dark"
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <!-- NASDAQ -->
+  <div class="card">
+    <h3>📊 NASDAQ 100</h3>
+    <iframe 
+      src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:AAPL&interval=D&theme=dark"
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <!-- DOW JONES -->
+  <div class="card">
+    <h3>🏭 Dow Jones</h3>
+    <iframe 
+      src="https://s.tradingview.com/widgetembed/?symbol=DJI&interval=D&theme=dark"
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <!-- GOLD -->
+  <div class="card">
+    <h3>🥇 Gold</h3>
+    <iframe 
+      src="https://s.tradingview.com/widgetembed/?symbol=OANDA:XAUUSD&interval=60&theme=dark"
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <!-- OIL -->
+  <div class="card">
+    <h3>🛢 Oil (WTI)</h3>
+    <iframe 
+      src="https://s.tradingview.com/widgetembed/?symbol=NYMEX:CL1!&interval=60&theme=dark"
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <!-- BITCOIN -->
+  <div class="card">
+    <h3>₿ Bitcoin Market</h3>
+    <iframe 
+      src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:BTCUSDT&interval=60&theme=dark"
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <!-- MARKET NEWS -->
+  <div class="card">
+    <h3>📰 Market Overview</h3>
+    <ul>
+      <li>US inflation expectations still elevated</li>
+      <li>Tech stocks dominate index movement</li>
+      <li>Crypto correlating with Nasdaq again</li>
+      <li>Oil prices remain volatile due to supply risks</li>
+    </ul>
+  </div>
+
+  <!-- INSIGHT BOX -->
+  <div class="card">
+    <h3>💡 Analyst Insight</h3>
+    <p>
+      Markets are currently driven by macroeconomic uncertainty,
+      especially interest rate expectations and liquidity conditions.
+    </p>
+  </div>
+
+  <!-- AD SPACE -->
+  <div class="card adbox">
+    <h3>Sponsored</h3>
+    <p>Google AdSense placement area</p>
+  </div>
+
+</section>
+
+<footer>
+  <p>© 2026 Finance Hub - Real-time global market data dashboard</p>
+</footer>
+
+</body>
+</html>
