@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Financial News - GlobalEdge</title>
-  <meta name="description" content="실시간 글로벌 금융 뉴스와 시장 분석">
+  <meta name="description" content="Real-time global financial news and market analysis">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>Financial News</h1>
+    <h1>📰 Financial News</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="crypto.html">Crypto</a>
@@ -21,23 +21,29 @@
       <a href="analysis.html">Analysis</a>
       <a href="calculator.html">Calculator</a>
     </nav>
+    <!-- 언어 선택 -->
+    <div id="lang-switch">
+      <button onclick="setLang('en')">English</button>
+      <button onclick="setLang('ko')">한국어</button>
+      <button onclick="setLang('zh')">中文</button>
+      <button onclick="setLang('ja')">日本語</button>
+    </div>
   </header>
 
   <main>
     <section>
-      <h2>최신 금융 뉴스</h2>
+      <h2 id="latest-news">Latest Financial Headlines</h2>
       <ul>
-        <li><strong>비트코인</strong>이 70K 돌파 시도 중 - 투자자 관심 집중</li>
-        <li><strong>EUR/USD</strong> 환율, 유럽중앙은행 정책 발표 앞두고 변동성 확대</li>
-        <li><strong>S&P500</strong> 지수, 기술주 강세로 사상 최고치 근접</li>
+        <li><strong>Bitcoin</strong> attempts 70K breakout — investor focus intensifies</li>
+        <li><strong>EUR/USD</strong> volatility rises ahead of ECB policy announcement</li>
+        <li><strong>S&P500</strong> nears record high driven by tech stocks</li>
       </ul>
     </section>
 
     <section>
-      <h2>뉴스 피드 자리</h2>
-      <p>추후 API 연동으로 실시간 뉴스 헤드라인을 자동 표시할 수 있습니다.</p>
+      <h2 id="live-feed">Live News Feed</h2>
       <div style="background:#161b22; padding:2rem; text-align:center;">
-        [실시간 뉴스 피드 자리]
+        [API 연동 자리: Investing.com 스타일 실시간 뉴스 헤드라인 자동 표시]
       </div>
     </section>
   </main>
@@ -45,5 +51,33 @@
   <footer>
     <p>&copy; 2026 GlobalEdge. All rights reserved.</p>
   </footer>
+
+  <script>
+    // 다국어 지원
+    const translations = {
+      en: {
+        "latest-news": "Latest Financial Headlines",
+        "live-feed": "Live News Feed"
+      },
+      ko: {
+        "latest-news": "최신 금융 뉴스",
+        "live-feed": "실시간 뉴스 피드"
+      },
+      zh: {
+        "latest-news": "最新金融新闻",
+        "live-feed": "实时新闻"
+      },
+      ja: {
+        "latest-news": "最新金融ニュース",
+        "live-feed": "ライブニュースフィード"
+      }
+    };
+
+    function setLang(lang) {
+      for (const id in translations[lang]) {
+        document.getElementById(id).innerText = translations[lang][id];
+      }
+    }
+  </script>
 </body>
 </html>
