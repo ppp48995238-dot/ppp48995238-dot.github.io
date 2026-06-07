@@ -1,121 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prediction Markets - GlobalEdge</title>
-  <meta name="description" content="Prediction market indicators and probability-based data visualization">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Prediction Market - Crypto & Stock Forecasts</title>
+<meta name="description" content="Predict Bitcoin, stocks, and market movements. Community-driven forecast platform.">
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+.vote-btn {
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.yes { background: #16a34a; color: white; }
+.no { background: #dc2626; color: white; }
+
+.result-bar {
+  height: 10px;
+  background: #1f2937;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.fill {
+  height: 100%;
+  background: #3b82f6;
+  width: 50%;
+}
+</style>
+
 </head>
+
 <body>
-  <header>
-    <h1>🔮 Prediction Markets</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="crypto.html">Crypto</a>
-      <a href="forex.html">Forex</a>
-      <a href="market.html">Markets</a>
-      <a href="sentiment.html">Sentiment</a>
-      <a href="news.html">News</a>
-      <a href="global.html">Global</a>
-      <a href="analysis.html">Analysis</a>
-      <a href="calculator.html">Calculator</a>
-    </nav>
-    <!-- 언어 선택 -->
-    <div id="lang-switch">
-      <button onclick="setLang('en')">English</button>
-      <button onclick="setLang('ko')">한국어</button>
-      <button onclick="setLang('zh')">中文</button>
-      <button onclick="setLang('ja')">日本語</button>
+
+<header class="topbar">
+  <div class="logo">📊 Prediction Market</div>
+  <div class="subtitle">Community Forecast • Crypto • Stocks • Macro</div>
+</header>
+
+<nav class="menu">
+  <a href="index.html">Home</a>
+  <a href="market.html">Markets</a>
+  <a href="crypto.html">Crypto</a>
+  <a href="forex.html">Forex</a>
+  <a href="news.html">News</a>
+  <a href="predict.html">Predict</a>
+</nav>
+
+<!-- MARKET STATS -->
+<section class="stats-bar">
+
+  <div class="stat">
+    <h4>Active Votes</h4>
+    <p>1,248</p>
+  </div>
+
+  <div class="stat">
+    <h4>Markets Sentiment</h4>
+    <p>Mixed</p>
+  </div>
+
+  <div class="stat">
+    <h4>Top Asset</h4>
+    <p>Bitcoin</p>
+  </div>
+
+  <div class="stat">
+    <h4>Forecast Type</h4>
+    <p>Short Term</p>
+  </div>
+
+</section>
+
+<!-- QUESTIONS -->
+<section class="grid">
+
+  <!-- QUESTION 1 -->
+  <div class="card">
+    <h3>₿ Will Bitcoin go above $100,000?</h3>
+
+    <button class="vote-btn yes" onclick="vote('q1','yes')">YES</button>
+    <button class="vote-btn no" onclick="vote('q1','no')">NO</button>
+
+    <div class="result-bar">
+      <div id="q1bar" class="fill"></div>
     </div>
-  </header>
 
-  <main>
-    <section>
-      <h2 id="predict-title">Prediction Indicators</h2>
-      <p id="predict-desc">Probability-based data visualization from prediction markets.</p>
-      <table border="1" style="width:100%; text-align:center;">
-        <thead>
-          <tr>
-            <th id="event-col">Event</th>
-            <th id="up-col">Up Probability</th>
-            <th id="down-col">Down Probability</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>BTC 70K Breakout</td>
-            <td>65%</td>
-            <td>35%</td>
-          </tr>
-          <tr>
-            <td>EUR/USD holds 1.10</td>
-            <td>58%</td>
-            <td>42%</td>
-          </tr>
-          <tr>
-            <td>S&P500 reaches 6000</td>
-            <td>52%</td>
-            <td>48%</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+    <p id="q1text">50% YES / 50% NO</p>
+  </div>
 
-    <section>
-      <h2 id="poly-title">Polymarket Integration</h2>
-      <div style="background:#161b22; padding:2rem; text-align:center;">
-        [Polymarket API 연동 자리: 실시간 확률 그래프 표시]
-      </div>
-    </section>
-  </main>
+  <!-- QUESTION 2 -->
+  <div class="card">
+    <h3>📈 Will Nasdaq hit new ATH this month?</h3>
 
-  <footer>
-    <p>&copy; 2026 GlobalEdge. All rights reserved.</p>
-  </footer>
+    <button class="vote-btn yes" onclick="vote('q2','yes')">YES</button>
+    <button class="vote-btn no" onclick="vote('q2','no')">NO</button>
 
-  <script>
-    // 다국어 지원
-    const translations = {
-      en: {
-        "predict-title": "Prediction Indicators",
-        "predict-desc": "Probability-based data visualization from prediction markets.",
-        "event-col": "Event",
-        "up-col": "Up Probability",
-        "down-col": "Down Probability",
-        "poly-title": "Polymarket Integration"
-      },
-      ko: {
-        "predict-title": "예측시장 보조지표",
-        "predict-desc": "예측시장의 확률 기반 데이터 시각화.",
-        "event-col": "이벤트",
-        "up-col": "상승 확률",
-        "down-col": "하락 확률",
-        "poly-title": "폴리마켓 연동"
-      },
-      zh: {
-        "predict-title": "预测市场指标",
-        "predict-desc": "来自预测市场的概率数据可视化。",
-        "event-col": "事件",
-        "up-col": "上涨概率",
-        "down-col": "下跌概率",
-        "poly-title": "Polymarket集成"
-      },
-      ja: {
-        "predict-title": "予測市場指標",
-        "predict-desc": "予測市場からの確率ベースのデータ可視化。",
-        "event-col": "イベント",
-        "up-col": "上昇確率",
-        "down-col": "下降確率",
-        "poly-title": "Polymarket連携"
-      }
-    };
+    <div class="result-bar">
+      <div id="q2bar" class="fill"></div>
+    </div>
 
-    function setLang(lang) {
-      for (const id in translations[lang]) {
-        document.getElementById(id).innerText = translations[lang][id];
-      }
-    }
-  </script>
+    <p id="q2text">50% YES / 50% NO</p>
+  </div>
+
+  <!-- QUESTION 3 -->
+  <div class="card">
+    <h3>💱 Will USD strengthen further?</h3>
+
+    <button class="vote-btn yes" onclick="vote('q3','yes')">YES</button>
+    <button class="vote-btn no" onclick="vote('q3','no')">NO</button>
+
+    <div class="result-bar">
+      <div id="q3bar" class="fill"></div>
+    </div>
+
+    <p id="q3text">50% YES / 50% NO</p>
+  </div>
+
+</section>
+
+<!-- EXPLANATION -->
+<section class="card" style="margin:20px;">
+  <h2>💡 How Prediction Market Works</h2>
+  <p>
+    Users vote on future market outcomes such as Bitcoin price movements,
+    stock market trends, and macroeconomic events.
+  </p>
+
+  <p>
+    This creates a crowd-sourced sentiment indicator similar to professional prediction markets.
+  </p>
+</section>
+
+<footer>
+  <p>© 2026 Finance Hub - Community Prediction Market</p>
+</footer>
+
+<script>
+const votes = {
+  q1: { yes: 50, no: 50 },
+  q2: { yes: 50, no: 50 },
+  q3: { yes: 50, no: 50 }
+};
+
+function vote(q, type) {
+  if (type === "yes") votes[q].yes++;
+  else votes[q].no++;
+
+  const total = votes[q].yes + votes[q].no;
+  const yesPercent = Math.round((votes[q].yes / total) * 100);
+
+  document.getElementById(q + "bar").style.width = yesPercent + "%";
+  document.getElementById(q + "text").innerText =
+    yesPercent + "% YES / " + (100 - yesPercent) + "% NO";
+}
+</script>
+
 </body>
 </html>
