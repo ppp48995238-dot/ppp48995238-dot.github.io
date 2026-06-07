@@ -1,7 +1,45 @@
-<!DOCTYPE html><html><head><link rel="stylesheet" href="style.css"><title>Global</title></head><body>
-<div class="header"><h1>Global Markets</h1></div>
-<div class="tabs">
-    <a href="index.html" class="tab-link">홈</a><a href="market.html" class="tab-link">기술분석</a><a href="news.html" class="tab-link">경제뉴스</a><a href="crypto.html" class="tab-link">코인</a><a href="forex.html" class="tab-link">외환</a><a href="sentiment.html" class="tab-link">심리분석</a><a href="global.html" class="tab-link">글로벌</a><a href="analysis.html" class="tab-link">기업분석</a><a href="predict.html" class="tab-link">예측시장</a><a href="calculator.html" class="tab-link">계산기</a>
-</div>
-<div class="dashboard"><div class="card" style="grid-column: span 2;"><h2>🌎 세계 지수</h2><div class="tradingview-widget-container"><script src="https://s3.tradingview.com/external-embedding/embed-widget-forex-cross-rates.js" async>{"currencies": ["EUR", "USD", "JPY", "GBP", "CHF", "AUD", "CAD", "CNY", "KRW"], "colorTheme": "dark", "width": "100%", "height": 600}</script></div></div></div>
-</body></html>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Global Markets | 세계지수</title>
+</head>
+<body>
+    <div class="header">
+        <h1>GLOBAL MARKETS</h1>
+    </div>
+
+    <div class="tabs">
+        <a href="index.html" class="tab-link">시장종합</a>
+        <a href="market.html" class="tab-link">기술분석</a>
+        <a href="news.html" class="tab-link">실적발표</a>
+        <a href="crypto.html" class="tab-link">코인</a>
+        <a href="forex.html" class="tab-link">환율</a>
+        <a href="sentiment.html" class="tab-link">공포지수</a>
+        <a href="global.html" class="tab-link">세계지수</a>
+        <a href="analysis.html" class="tab-link">종목진단</a>
+        <a href="predict.html" class="tab-link">예측시장</a>
+        <a href="calculator.html" class="tab-link">퀀트계산기</a>
+    </div>
+
+    <div class="dashboard">
+        <div class="card" style="grid-column: span 2;">
+            <h2>🌎 주요 국가 지수 현황</h2>
+            <div class="tradingview-widget-container">
+                <script src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
+                {
+                    "width": "100%",
+                    "height": "600",
+                    "symbolsGroups": [
+                        { "name": "Indices", "originalName": "Indices", "symbols": [ { "name": "FOREXCOM:SPXUSD" }, { "name": "FOREXCOM:NSXUSD" }, { "name": "INDEX:DJI" }, { "name": "INDEX:NKY" }, { "name": "INDEX:HSI" }, { "name": "INDEX:KS11" } ] }
+                    ],
+                    "colorTheme": "dark",
+                    "locale": "kr"
+                }
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
