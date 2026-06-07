@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
-    <title>Forex Market | 환율</title>
+    <title>Forex Market Terminal</title>
 </head>
 <body>
     <div class="header">
-        <h1>FOREX TERMINAL</h1>
+        <h1>FOREX MARKET TERMINAL</h1>
     </div>
 
     <div class="tabs">
@@ -25,11 +25,11 @@
 
     <div class="dashboard">
         <div class="card" style="grid-column: span 2;">
-            <h2>💱 주요 통화 쌍 실시간 환율</h2>
+            <h2>💱 글로벌 통화 교차 환율 (KRW 포함)</h2>
             <div class="tradingview-widget-container">
                 <script src="https://s3.tradingview.com/external-embedding/embed-widget-forex-cross-rates.js" async>
                 {
-                    "currencies": ["EUR", "USD", "JPY", "GBP", "CHF", "AUD", "CAD", "NZD", "KRW"],
+                    "currencies": ["EUR", "USD", "JPY", "GBP", "CHF", "AUD", "CAD", "NZD", "CNY", "KRW", "SGD", "HKD"],
                     "isTransparent": false,
                     "colorTheme": "dark",
                     "width": "100%",
@@ -41,7 +41,7 @@
         </div>
 
         <div class="card" style="grid-column: span 2;">
-            <h2>🗺️ 환율 강세/약세 히트맵</h2>
+            <h2>🗺️ 통화 시장 강세/약세 히트맵</h2>
             <div class="tradingview-widget-container">
                 <script src="https://s3.tradingview.com/external-embedding/embed-widget-forex-heat-map.js" async>
                 {
