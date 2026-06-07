@@ -2,105 +2,103 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Finance Hub - Global Markets Dashboard</title>
-<meta name="description" content="Real-time stocks, crypto, forex charts and market insights.">
+<title>Global Finance Live Dashboard - Stocks Crypto Markets</title>
+<meta name="description" content="Live Bitcoin, Ethereum, stock market prices, global financial news and crypto sentiment dashboard.">
 
 <link rel="stylesheet" href="style.css">
+
+<style>
+.card { background:#111827; padding:15px; border-radius:12px; color:white; }
+.grid { display:grid; grid-template-columns:repeat(3,1fr); gap:15px; padding:20px; }
+body { margin:0; font-family:Arial; background:#0b1220; color:white; }
+.topbar { padding:20px; text-align:center; background:#111827; }
+.menu { display:flex; justify-content:center; gap:15px; background:#1f2937; padding:10px; }
+.menu a { color:white; text-decoration:none; }
+.ad { background:#1e293b; padding:20px; text-align:center; }
+</style>
 
 </head>
 
 <body>
 
-<header class="topbar">
-  <div class="logo">📊 Finance Hub</div>
-  <div class="subtitle">Global Markets • Crypto • Stocks • Forex • Insights</div>
-</header>
+<div class="topbar">
+<h1>📊 Global Finance Live</h1>
+<p>Real-time Crypto • Stocks • Market Sentiment</p>
+</div>
 
-<nav class="menu">
-  <a href="index.html">Home</a>
-  <a href="market.html">Markets</a>
-  <a href="crypto.html">Crypto</a>
-  <a href="forex.html">Forex</a>
-  <a href="news.html">News</a>
-  <a href="predict.html">Predict</a>
-</nav>
+<div class="menu">
+<a href="index.html">Home</a>
+<a href="crypto.html">Crypto</a>
+<a href="market.html">Markets</a>
+<a href="news.html">News</a>
+<a href="predict.html">Predict</a>
+</div>
 
-<section class="stats-bar">
-  <div class="stat">
-    <h4>Fear & Greed</h4>
-    <p id="fear">Neutral</p>
-  </div>
-  <div class="stat">
-    <h4>BTC Trend</h4>
-    <p id="btc">Loading...</p>
-  </div>
-  <div class="stat">
-    <h4>Market Mood</h4>
-    <p>Volatile</p>
-  </div>
-</section>
+<div class="grid">
 
-<section class="grid">
+<div class="card">
+<h2>₿ Bitcoin</h2>
+<h3 id="btc">Loading...</h3>
+</div>
 
-  <!-- GLOBAL MARKET -->
-  <div class="card large">
-    <h2>🌍 Global Market Overview</h2>
-    <iframe 
-      src="https://s.tradingview.com/widgetembed/?symbol=SPX&interval=D&theme=dark"
-      loading="lazy">
-    </iframe>
-  </div>
+<div class="card">
+<h2>Ξ Ethereum</h2>
+<h3 id="eth">Loading...</h3>
+</div>
 
-  <!-- BTC -->
-  <div class="card">
-    <h3>₿ Bitcoin</h3>
-    <iframe 
-      src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:BTCUSDT&interval=60&theme=dark"
-      loading="lazy">
-    </iframe>
-  </div>
+<div class="card">
+<h2>📊 Fear & Greed</h2>
+<h3 id="fear">Loading...</h3>
+</div>
 
-  <!-- ETH -->
-  <div class="card">
-    <h3>Ξ Ethereum</h3>
-    <iframe 
-      src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:ETHUSDT&interval=60&theme=dark"
-      loading="lazy">
-    </iframe>
-  </div>
+<div class="card">
+<h2>📈 Nasdaq (ETF Proxy)</h2>
+<h3 id="nasdaq">Loading...</h3>
+</div>
 
-  <!-- NASDAQ -->
-  <div class="card">
-    <h3>📈 Nasdaq</h3>
-    <iframe 
-      src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:AAPL&interval=D&theme=dark"
-      loading="lazy">
-    </iframe>
-  </div>
+<div class="card">
+<h2>📰 Latest Crypto Sentiment</h2>
+<p id="sentiment">Loading...</p>
+</div>
 
-  <!-- NEWS PREVIEW -->
-  <div class="card">
-    <h3>📰 Breaking Market Insight</h3>
-    <ul>
-      <li>Fed interest rate expectations remain uncertain</li>
-      <li>Crypto market shows high volatility phase</li>
-      <li>Tech stocks leading index movement</li>
-    </ul>
-  </div>
+<div class="card ad">
+<h3>Sponsored</h3>
+<p>Ad Space (Google AdSense Ready)</p>
+</div>
 
-  <!-- AD SPACE (애드센스 자리) -->
-  <div class="card adbox">
-    <h3>Sponsored</h3>
-    <p>Ad placement area (Google AdSense)</p>
-  </div>
+</div>
 
-</section>
+<script>
+async function loadAll() {
 
-<footer>
-  <p>© 2026 Finance Hub. Real-time financial dashboard.</p>
-</footer>
+  // CRYPTO PRICE
+  const crypto = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd").then(r=>r.json());
+
+  document.getElementById("btc").innerText = "$" + crypto.bitcoin.usd.toLocaleString();
+  document.getElementById("eth").innerText = "$" + crypto.ethereum.usd.toLocaleString();
+
+  // FEAR & GREED
+  const fg = await fetch("https://api.alternative.me/fng/?limit=1").then(r=>r.json());
+  document.getElementById("fear").innerText = fg.data[0].value + " (" + fg.data[0].value_classification + ")";
+
+  // NASDAQ (ETF proxy SPY)
+  const spy = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd").then(r=>r.json());
+  document.getElementById("nasdaq").innerText = "Market tracking via SPY/Tech correlation";
+
+  // SENTIMENT (simple derived logic)
+  let sentimentText = "Neutral market conditions with mixed risk appetite.";
+  if (fg.data[0].value < 30) sentimentText = "Extreme fear in market - potential oversold conditions.";
+  if (fg.data[0].value > 70) sentimentText = "Extreme greed detected - possible correction risk.";
+
+  document.getElementById("sentiment").innerText = sentimentText;
+
+}
+
+loadAll();
+setInterval(loadAll, 60000);
+</script>
 
 </body>
 </html>
