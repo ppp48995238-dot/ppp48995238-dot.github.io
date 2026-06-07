@@ -1,60 +1,69 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <title>Forex Market Terminal</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forex Markets - GlobalEdge</title>
+  <meta name="description" content="주요 통화쌍 실시간 환율 차트와 뉴스">
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
 </head>
 <body>
-    <div class="header">
-        <h1>FOREX MARKET TERMINAL</h1>
-    </div>
+  <header>
+    <h1>Forex Markets</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="crypto.html">Crypto</a>
+      <a href="market.html">Markets</a>
+      <a href="predict.html">Predict</a>
+      <a href="sentiment.html">Sentiment</a>
+      <a href="news.html">News</a>
+      <a href="global.html">Global</a>
+      <a href="analysis.html">Analysis</a>
+      <a href="calculator.html">Calculator</a>
+    </nav>
+  </header>
 
-    <div class="tabs">
-        <a href="index.html" class="tab-link">시장종합</a>
-        <a href="market.html" class="tab-link">기술분석</a>
-        <a href="news.html" class="tab-link">실적발표</a>
-        <a href="crypto.html" class="tab-link">코인</a>
-        <a href="forex.html" class="tab-link">환율</a>
-        <a href="sentiment.html" class="tab-link">공포지수</a>
-        <a href="global.html" class="tab-link">세계지수</a>
-        <a href="analysis.html" class="tab-link">종목진단</a>
-        <a href="predict.html" class="tab-link">예측시장</a>
-        <a href="calculator.html" class="tab-link">퀀트계산기</a>
-    </div>
+  <main>
+    <section>
+      <h2>EUR/USD 실시간 차트</h2>
+      <div id="eurusd-chart"></div>
+      <script>
+        new TradingView.widget({
+          "width": "100%",
+          "height": 500,
+          "symbol": "FX:EURUSD",
+          "interval": "60",
+          "timezone": "Asia/Seoul",
+          "theme": "dark",
+          "style": "1",
+          "locale": "kr",
+          "container_id": "eurusd-chart"
+        });
+      </script>
+    </section>
 
-    <div class="dashboard">
-        <div class="card" style="grid-column: span 2;">
-            <h2>💱 글로벌 통화 교차 환율 (KRW 포함)</h2>
-            <div class="tradingview-widget-container">
-                <script src="https://s3.tradingview.com/external-embedding/embed-widget-forex-cross-rates.js" async>
-                {
-                    "currencies": ["EUR", "USD", "JPY", "GBP", "CHF", "AUD", "CAD", "NZD", "CNY", "KRW", "SGD", "HKD"],
-                    "isTransparent": false,
-                    "colorTheme": "dark",
-                    "width": "100%",
-                    "height": "600",
-                    "locale": "kr"
-                }
-                </script>
-            </div>
-        </div>
+    <section>
+      <h2>USD/JPY 실시간 차트</h2>
+      <div id="usdjpy-chart"></div>
+      <script>
+        new TradingView.widget({
+          "width": "100%",
+          "height": 500,
+          "symbol": "FX:USDJPY",
+          "interval": "60",
+          "timezone": "Asia/Seoul",
+          "theme": "dark",
+          "style": "1",
+          "locale": "kr",
+          "container_id": "usdjpy-chart"
+        });
+      </script>
+    </section>
+  </main>
 
-        <div class="card" style="grid-column: span 2;">
-            <h2>🗺️ 통화 시장 강세/약세 히트맵</h2>
-            <div class="tradingview-widget-container">
-                <script src="https://s3.tradingview.com/external-embedding/embed-widget-forex-heat-map.js" async>
-                {
-                    "currencies": ["EUR", "USD", "JPY", "GBP", "CHF", "AUD", "CAD", "NZD", "KRW"],
-                    "isTransparent": false,
-                    "colorTheme": "dark",
-                    "width": "100%",
-                    "height": "600",
-                    "locale": "kr"
-                }
-                </script>
-            </div>
-        </div>
-    </div>
+  <footer>
+    <p>&copy; 2026 GlobalEdge. All rights reserved.</p>
+  </footer>
 </body>
 </html>
