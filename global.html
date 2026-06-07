@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
-    <title>Global Indices | 세계지수</title>
+    <title>Global Market Indices</title>
 </head>
 <body>
     <div class="header">
@@ -15,35 +15,28 @@
         <a href="market.html" class="tab-link">기술분석</a>
         <a href="news.html" class="tab-link">실적발표</a>
         <a href="crypto.html" class="tab-link">코인</a>
-        <a href="forex.html" class="tab-link">환율</a>
-        <a href="sentiment.html" class="tab-link">공포지수</a>
-        <a href="global.html" class="tab-link">세계지수</a>
-        <a href="analysis.html" class="tab-link">종목진단</a>
-        <a href="predict.html" class="tab-link">예측시장</a>
-        <a href="calculator.html" class="tab-link">퀀트계산기</a>
+        <a href="global.html" class="tab-link active">세계지수</a>
     </div>
 
     <div class="dashboard">
-        <div class="card" style="grid-column: span 2;">
-            <h2>🌎 전 세계 시장 지수 현황 (실시간)</h2>
-            <div class="tradingview-widget-container">
-                <script src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
-                {
-                    "width": "100%",
-                    "height": "850",
-                    "symbolsGroups": [
-                        { "name": "미국", "symbols": [ {"s": "FOREXCOM:SPXUSD"}, {"s": "FOREXCOM:NSXUSD"}, {"s": "INDEX:DJI"}, {"s": "INDEX:RUT"} ] },
-                        { "name": "유럽", "symbols": [ {"s": "INDEX:DAX"}, {"s": "INDEX:CAC40"}, {"s": "INDEX:FTSE"} ] },
-                        { "name": "아시아", "symbols": [ {"s": "INDEX:NKY"}, {"s": "INDEX:HSI"}, {"s": "KRX:KOSPI"}, {"s": "KRX:KOSDAQ"}, {"s": "SSE:000001"} ] },
-                        { "name": "원자재 및 기타", "symbols": [ {"s": "TVC:GOLD"}, {"s": "TVC:USOIL"}, {"s": "INDEX:BTCUSD"} ] }
-                    ],
-                    "showSymbolLogo": true,
-                    "colorTheme": "dark",
-                    "locale": "kr"
-                }
-                </script>
-            </div>
+        <div class="card">
+            <h2>🌎 주요 국가 지수 및 원자재 현황</h2>
+            <div id="global-market" class="widget-box" style="min-height: 850px;"></div>
         </div>
     </div>
+
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script type="text/javascript">
+        new TradingView.widget({
+            "container_id": "global-market",
+            "width": "100%", "height": "850",
+            "symbolsGroups": [
+                { "name": "미국 증시", "symbols": [ {"s": "SP:SPX"}, {"s": "NASDAQ:NDX"}, {"s": "INDEX:DJI"} ] },
+                { "name": "아시아/유럽", "symbols": [ {"s": "INDEX:NKY"}, {"s": "INDEX:DAX"}, {"s": "KRX:KOSPI"} ] },
+                { "name": "원자재/에너지", "symbols": [ {"s": "TVC:GOLD"}, {"s": "TVC:USOIL"}, {"s": "TVC:SILVER"} ] }
+            ],
+            "showSymbolLogo": true, "colorTheme": "dark", "locale": "kr"
+        });
+    </script>
 </body>
 </html>
