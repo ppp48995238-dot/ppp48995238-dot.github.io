@@ -2,144 +2,102 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Markets - Global Financial Overview</title>
-<meta name="description" content="Live global markets: stocks, indices, commodities, crypto overview.">
+<title>Global Markets Dashboard - Stocks Forex Commodities</title>
+
+<meta name="description" content="Live global markets: S&P500, Nasdaq, Gold, Oil, Forex and economic indices.">
 
 <link rel="stylesheet" href="style.css">
+
+<style>
+body { margin:0; font-family:Arial; background:#0b1220; color:white; }
+
+.topbar {
+  padding:20px;
+  text-align:center;
+  background:#111827;
+}
+
+.menu {
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  padding:10px;
+  background:#1f2937;
+}
+
+.menu a {
+  color:white;
+  text-decoration:none;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:15px;
+  padding:20px;
+}
+
+.card {
+  background:#111827;
+  padding:15px;
+  border-radius:12px;
+}
+
+iframe {
+  width:100%;
+  height:300px;
+  border:none;
+  border-radius:10px;
+}
+</style>
 
 </head>
 
 <body>
 
-<header class="topbar">
-  <div class="logo">📊 Global Markets</div>
-  <div class="subtitle">Stocks • Indices • Commodities • Crypto Overview</div>
-</header>
+<div class="topbar">
+<h1>📊 Global Markets</h1>
+<p>Stocks • Forex • Commodities • Indices</p>
+</div>
 
-<nav class="menu">
-  <a href="index.html">Home</a>
-  <a href="market.html">Markets</a>
-  <a href="crypto.html">Crypto</a>
-  <a href="forex.html">Forex</a>
-  <a href="news.html">News</a>
-  <a href="predict.html">Predict</a>
-</nav>
+<div class="menu">
+<a href="index.html">Home</a>
+<a href="crypto.html">Crypto</a>
+<a href="market.html">Markets</a>
+<a href="news.html">News</a>
+<a href="predict.html">Predict</a>
+</div>
 
-<!-- MARKET SUMMARY STRIP -->
-<section class="stats-bar">
+<div class="grid">
 
-  <div class="stat">
-    <h4>S&P 500</h4>
-    <p>Live Index</p>
-  </div>
+<div class="card">
+<h3>S&P 500</h3>
+<iframe src="https://s.tradingview.com/widgetembed/?symbol=SPX&interval=D&theme=dark"></iframe>
+</div>
 
-  <div class="stat">
-    <h4>NASDAQ</h4>
-    <p>Tech Heavy</p>
-  </div>
+<div class="card">
+<h3>NASDAQ</h3>
+<iframe src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:AAPL&interval=D&theme=dark"></iframe>
+</div>
 
-  <div class="stat">
-    <h4>DOW JONES</h4>
-    <p>Industrial Index</p>
-  </div>
+<div class="card">
+<h3>Gold</h3>
+<iframe src="https://s.tradingview.com/widgetembed/?symbol=OANDA:XAUUSD&interval=60&theme=dark"></iframe>
+</div>
 
-  <div class="stat">
-    <h4>Crypto Market</h4>
-    <p>Volatile</p>
-  </div>
+<div class="card">
+<h3>Oil (WTI)</h3>
+<iframe src="https://s.tradingview.com/widgetembed/?symbol=TVC:USOIL&interval=60&theme=dark"></iframe>
+</div>
 
-</section>
+<div class="card">
+<h3>DXY (Dollar Index)</h3>
+<iframe src="https://s.tradingview.com/widgetembed/?symbol=TVC:DXY&interval=D&theme=dark"></iframe>
+</div>
 
-<!-- MAIN GRID -->
-<section class="grid">
-
-  <!-- S&P500 -->
-  <div class="card large">
-    <h2>📈 S&P 500 Index</h2>
-    <iframe 
-      src="https://s.tradingview.com/widgetembed/?symbol=SPX&interval=D&theme=dark"
-      loading="lazy">
-    </iframe>
-  </div>
-
-  <!-- NASDAQ -->
-  <div class="card">
-    <h3>📊 NASDAQ 100</h3>
-    <iframe 
-      src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:AAPL&interval=D&theme=dark"
-      loading="lazy">
-    </iframe>
-  </div>
-
-  <!-- DOW JONES -->
-  <div class="card">
-    <h3>🏭 Dow Jones</h3>
-    <iframe 
-      src="https://s.tradingview.com/widgetembed/?symbol=DJI&interval=D&theme=dark"
-      loading="lazy">
-    </iframe>
-  </div>
-
-  <!-- GOLD -->
-  <div class="card">
-    <h3>🥇 Gold</h3>
-    <iframe 
-      src="https://s.tradingview.com/widgetembed/?symbol=OANDA:XAUUSD&interval=60&theme=dark"
-      loading="lazy">
-    </iframe>
-  </div>
-
-  <!-- OIL -->
-  <div class="card">
-    <h3>🛢 Oil (WTI)</h3>
-    <iframe 
-      src="https://s.tradingview.com/widgetembed/?symbol=NYMEX:CL1!&interval=60&theme=dark"
-      loading="lazy">
-    </iframe>
-  </div>
-
-  <!-- BITCOIN -->
-  <div class="card">
-    <h3>₿ Bitcoin Market</h3>
-    <iframe 
-      src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:BTCUSDT&interval=60&theme=dark"
-      loading="lazy">
-    </iframe>
-  </div>
-
-  <!-- MARKET NEWS -->
-  <div class="card">
-    <h3>📰 Market Overview</h3>
-    <ul>
-      <li>US inflation expectations still elevated</li>
-      <li>Tech stocks dominate index movement</li>
-      <li>Crypto correlating with Nasdaq again</li>
-      <li>Oil prices remain volatile due to supply risks</li>
-    </ul>
-  </div>
-
-  <!-- INSIGHT BOX -->
-  <div class="card">
-    <h3>💡 Analyst Insight</h3>
-    <p>
-      Markets are currently driven by macroeconomic uncertainty,
-      especially interest rate expectations and liquidity conditions.
-    </p>
-  </div>
-
-  <!-- AD SPACE -->
-  <div class="card adbox">
-    <h3>Sponsored</h3>
-    <p>Google AdSense placement area</p>
-  </div>
-
-</section>
-
-<footer>
-  <p>© 2026 Finance Hub - Real-time global market data dashboard</p>
-</footer>
+</div>
 
 </body>
 </html>
