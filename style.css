@@ -1,23 +1,16 @@
-body { background-color: #0c0e12; color: #e0e0e0; font-family: 'Pretendard', sans-serif; padding: 20px; }
-.header { text-align: center; padding: 20px 0; border-bottom: 1px solid #2f3239; }
-.tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
-.tab-link { color: #888; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; }
-.tab-link:hover, .tab-link.active { background: #2962ff; color: #fff; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background-color: #131722; color: #d1d4dc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
 
-/* 핵심: 12단 그리드 시스템 */
-.dashboard { 
-    display: grid; 
-    grid-template-columns: repeat(12, 1fr); 
-    gap: 20px; 
-    max-width: 1600px; 
-    margin: 0 auto; 
-}
-.card { 
-    background: #16181d; 
-    border: 1px solid #2f3239; 
-    border-radius: 8px; 
-    padding: 20px; 
-    grid-column: span 12; /* 기본적으로 한 줄 다 차지 */
-}
-/* 대형 위젯용 클래스 */
-.widget-box { width: 100%; min-height: 600px; }
+/* 1. 상단 메뉴바 (드롭다운 포함) */
+.navbar { display: flex; background: #161a25; padding: 10px 20px; border-bottom: 1px solid #2f3239; justify-content: center; }
+.dropdown { position: relative; display: inline-block; }
+.dropbtn { color: #d1d4dc; padding: 12px 20px; text-decoration: none; font-weight: 600; cursor: pointer; font-size: 14px; }
+.dropdown-content { display: none; position: absolute; background: #1a1c22; min-width: 160px; z-index: 1000; border: 1px solid #2f3239; }
+.dropdown-content a { color: #d1d4dc; padding: 10px 16px; display: block; text-decoration: none; font-size: 13px; }
+.dropdown-content a:hover { background: #2962ff; color: #fff; }
+.dropdown:hover .dropdown-content { display: block; }
+
+/* 2. 대시보드 레이아웃 */
+.dashboard { max-width: 1400px; margin: 20px auto; padding: 0 10px; display: grid; grid-template-columns: 1fr; gap: 20px; }
+.card { background: #16181d; border: 1px solid #2f3239; border-radius: 4px; padding: 20px; }
+h2 { font-size: 16px; margin-bottom: 15px; color: #ffffff; }
