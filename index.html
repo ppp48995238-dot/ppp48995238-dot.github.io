@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GlobalEdge 금융 플랫폼</title>
-  <meta name="description" content="실시간 투자 데이터, 예측시장, 글로벌 금융 터미널">
+  <title>GlobalEdge Terminal</title>
+  <meta name="description" content="Real-time financial data, charts, sentiment, prediction markets">
   <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
 </head>
 <body>
   <header>
-    <h1>GlobalEdge 터미널</h1>
+    <h1>🌐 GlobalEdge Terminal</h1>
     <nav>
       <a href="crypto.html">Crypto</a>
       <a href="forex.html">Forex</a>
@@ -21,29 +22,107 @@
       <a href="analysis.html">Analysis</a>
       <a href="calculator.html">Calculator</a>
     </nav>
+    <!-- 언어 선택 -->
+    <div id="lang-switch">
+      <button onclick="setLang('en')">English</button>
+      <button onclick="setLang('ko')">한국어</button>
+      <button onclick="setLang('zh')">中文</button>
+      <button onclick="setLang('ja')">日本語</button>
+    </div>
   </header>
 
-  <main>
-    <section id="hero">
-      <h2>실시간 글로벌 금융 데이터</h2>
-      <p>Investing.com + TradingView + Polymarket 통합 터미널</p>
+  <main style="display:grid; grid-template-columns:1fr 1fr; gap:2rem;">
+    <!-- 주요 차트 -->
+    <section>
+      <h2 id="btc-title">BTC/USDT Chart</h2>
+      <div id="btc-chart"></div>
+      <script>
+        new TradingView.widget({
+          "width": "100%",
+          "height": 400,
+          "symbol": "BINANCE:BTCUSDT",
+          "interval": "30",
+          "timezone": "Asia/Seoul",
+          "theme": "dark",
+          "style": "1",
+          "locale": "en",
+          "container_id": "btc-chart"
+        });
+      </script>
     </section>
 
-    <section id="overview">
-      <h3>플랫폼 주요 기능</h3>
-      <ul>
-        <li>암호화폐 실시간 차트 (BTC, ETH 등)</li>
-        <li>외환 환율 데이터 (EUR/USD, USD/JPY 등)</li>
-        <li>시장 뉴스 및 분석</li>
-        <li>예측시장 보조지표</li>
-        <li>투자 심리 지표</li>
-        <li>글로벌 경제 데이터</li>
-      </ul>
+    <section>
+      <h2 id="spx-title">S&P500 Chart</h2>
+      <div id="spx-chart"></div>
+      <script>
+        new TradingView.widget({
+          "width": "100%",
+          "height": 400,
+          "symbol": "INDEX:SPX",
+          "interval": "30",
+          "timezone": "Asia/Seoul",
+          "theme": "dark",
+          "style": "1",
+          "locale": "en",
+          "container_id": "spx-chart"
+        });
+      </script>
+    </section>
+
+    <!-- 뉴스/보조지표 -->
+    <section style="grid-column:1 / span 2;">
+      <h2 id="news-title">Live News Feed</h2>
+      <div style="background:#161b22; padding:1rem;">
+        [API 연동 자리: Investing.com 스타일 뉴스 헤드라인 자동 표시]
+      </div>
+    </section>
+
+    <section style="grid-column:1 / span 2;">
+      <h2 id="poly-title">Prediction Market Indicators</h2>
+      <div style="background:#161b22; padding:1rem;">
+        [Polymarket API 연동 자리: 확률 기반 보조지표 표시]
+      </div>
     </section>
   </main>
 
   <footer>
     <p>&copy; 2026 GlobalEdge. All rights reserved.</p>
   </footer>
+
+  <script>
+    // 간단한 다국어 지원
+    const translations = {
+      en: {
+        "btc-title": "BTC/USDT Chart",
+        "spx-title": "S&P500 Chart",
+        "news-title": "Live News Feed",
+        "poly-title": "Prediction Market Indicators"
+      },
+      ko: {
+        "btc-title": "비트코인 차트",
+        "spx-title": "S&P500 차트",
+        "news-title": "실시간 뉴스 피드",
+        "poly-title": "예측시장 보조지표"
+      },
+      zh: {
+        "btc-title": "比特币图表",
+        "spx-title": "标普500图表",
+        "news-title": "实时新闻",
+        "poly-title": "预测市场指标"
+      },
+      ja: {
+        "btc-title": "ビットコインチャート",
+        "spx-title": "S&P500チャート",
+        "news-title": "ライブニュースフィード",
+        "poly-title": "予測市場指標"
+      }
+    };
+
+    function setLang(lang) {
+      for (const id in translations[lang]) {
+        document.getElementById(id).innerText = translations[lang][id];
+      }
+    }
+  </script>
 </body>
 </html>
