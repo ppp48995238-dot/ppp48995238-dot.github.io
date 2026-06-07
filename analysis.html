@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Market Analysis - GlobalEdge</title>
-  <meta name="description" content="시장 분석 리포트와 주요 지표 차트">
+  <meta name="description" content="Market analysis reports and key index charts">
   <link rel="stylesheet" href="style.css">
   <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
 </head>
 <body>
   <header>
-    <h1>Market Analysis</h1>
+    <h1>📊 Market Analysis</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="crypto.html">Crypto</a>
@@ -22,21 +22,27 @@
       <a href="global.html">Global</a>
       <a href="calculator.html">Calculator</a>
     </nav>
+    <!-- 언어 선택 -->
+    <div id="lang-switch">
+      <button onclick="setLang('en')">English</button>
+      <button onclick="setLang('ko')">한국어</button>
+      <button onclick="setLang('zh')">中文</button>
+      <button onclick="setLang('ja')">日本語</button>
+    </div>
   </header>
 
   <main>
     <section>
-      <h2>시장 분석 리포트</h2>
-      <p>최근 금융 시장 동향을 요약한 분석 리포트입니다.</p>
+      <h2 id="report-title">Market Analysis Report</h2>
       <ul>
-        <li>비트코인: 강세 지속, 70K 돌파 가능성</li>
-        <li>EUR/USD: ECB 정책 발표 앞두고 변동성 확대</li>
-        <li>S&P500: 기술주 강세로 사상 최고치 근접</li>
+        <li>Bitcoin: Strong momentum, possible breakout above 70K</li>
+        <li>EUR/USD: Volatility ahead of ECB policy decision</li>
+        <li>S&P500: Tech stocks pushing index near record highs</li>
       </ul>
     </section>
 
     <section>
-      <h2>분석 차트</h2>
+      <h2 id="chart-title">S&P500 Daily Chart</h2>
       <div id="analysis-chart"></div>
       <script>
         new TradingView.widget({
@@ -47,7 +53,7 @@
           "timezone": "Asia/Seoul",
           "theme": "dark",
           "style": "1",
-          "locale": "kr",
+          "locale": "en",
           "container_id": "analysis-chart"
         });
       </script>
@@ -57,5 +63,33 @@
   <footer>
     <p>&copy; 2026 GlobalEdge. All rights reserved.</p>
   </footer>
+
+  <script>
+    // 다국어 지원
+    const translations = {
+      en: {
+        "report-title": "Market Analysis Report",
+        "chart-title": "S&P500 Daily Chart"
+      },
+      ko: {
+        "report-title": "시장 분석 리포트",
+        "chart-title": "S&P500 일간 차트"
+      },
+      zh: {
+        "report-title": "市场分析报告",
+        "chart-title": "标普500日线图"
+      },
+      ja: {
+        "report-title": "市場分析レポート",
+        "chart-title": "S&P500 日足チャート"
+      }
+    };
+
+    function setLang(lang) {
+      for (const id in translations[lang]) {
+        document.getElementById(id).innerText = translations[lang][id];
+      }
+    }
+  </script>
 </body>
 </html>
