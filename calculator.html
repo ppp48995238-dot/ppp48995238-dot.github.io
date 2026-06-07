@@ -3,23 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
-    <title>Quant Strategy & Risk Terminal</title>
-    <style>
-        /* 계산기 전용 스타일 추가 */
-        .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; }
-        .input-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; color: #deff9a; font-weight: bold; }
-        input { width: 100%; padding: 12px; background: #111; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 16px; }
-        button { width: 100%; padding: 15px; background: #2962ff; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 18px; transition: 0.3s; }
-        button:hover { background: #1e4bd8; }
-        .result-box { margin-top: 25px; padding: 20px; background: #050505; border-radius: 12px; border: 1px solid #2962ff; }
-        .result-item { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 18px; }
-        .highlight { color: #deff9a; font-weight: bold; }
-    </style>
+    <title>Quant Calculator | 퀀트 계산기</title>
 </head>
 <body>
     <div class="header">
-        <h1>QUANT STRATEGY TERMINAL</h1>
+        <h1>QUANT RISK CALCULATOR</h1>
     </div>
 
     <div class="tabs">
@@ -27,95 +15,47 @@
         <a href="market.html" class="tab-link">기술분석</a>
         <a href="news.html" class="tab-link">실적발표</a>
         <a href="crypto.html" class="tab-link">코인</a>
-        <a href="forex.html" class="tab-link">환율</a>
-        <a href="sentiment.html" class="tab-link">공포지수</a>
         <a href="global.html" class="tab-link">세계지수</a>
         <a href="analysis.html" class="tab-link">종목진단</a>
         <a href="predict.html" class="tab-link">예측시장</a>
-        <a href="calculator.html" class="tab-link">퀀트계산기</a>
+        <a href="calculator.html" class="tab-link active">퀀트계산기</a>
     </div>
 
     <div class="dashboard">
-        <div class="card">
-            <h2>🎯 목표가/손절가 시뮬레이터</h2>
-            <div class="input-group">
-                <label>진입 가격 (매수가)</label>
-                <input type="number" id="buyPrice" placeholder="예: 150.50">
+        <div class="card half">
+            <h2>🛡️ 포지션 사이징 (Kelly Criterion)</h2>
+            <div style="margin-bottom:15px;">
+                <label>총 자본금:</label>
+                <input type="number" id="capital" placeholder="자본금 입력" style="width:100%; padding:10px; background:#222; border:1px solid #444; color:#fff;">
             </div>
-            <div class="calc-grid">
-                <div class="input-group">
-                    <label>목표 수익률 (%)</label>
-                    <input type="number" id="targetPct" value="20">
-                </div>
-                <div class="input-group">
-                    <label>허용 손실률 (%)</label>
-                    <input type="number" id="stopPct" value="5">
-                </div>
+            <div style="margin-bottom:15px;">
+                <label>허용 손절폭 (%):</label>
+                <input type="number" id="stopLoss" placeholder="진입가 대비 손절 %" style="width:100%; padding:10px; background:#222; border:1px solid #444; color:#fff;">
             </div>
-            <button onclick="calculateTargets()">전략 산출하기</button>
-            
-            <div class="result-box" id="targetResult" style="display:none;">
-                <div class="result-item"><span>예상 목표가:</span> <span class="highlight" id="resTarget">0</span></div>
-                <div class="result-item"><span>예상 손절가:</span> <span class="highlight" style="color:#ff5252;" id="resStop">0</span></div>
-                <div class="result-item"><span>손익비 (R/R):</span> <span class="highlight" id="resRatio">0</span></div>
+            <button onclick="calculate()" style="width:100%; padding:15px; background:#2962ff; color:#fff; border:none; cursor:pointer; font-weight:bold;">비중 계산하기</button>
+            <div id="result" style="margin-top:20px; padding:15px; background:#000; border-left:4px solid #2962ff;">
+                <p id="resText">자본금과 손절폭을 입력하고 계산해봐!</p>
             </div>
         </div>
 
-        <div class="card">
-            <h2>🛡️ 포지션 사이징 (리스크 관리)</h2>
-            <div class="input-group">
-                <label>총 투자 자본 (Total Capital)</label>
-                <input type="number" id="totalCap" placeholder="예: 10,000,000">
-            </div>
-            <div class="calc-grid">
-                <div class="input-group">
-                    <label>1회 매매 리스크 (%)</label>
-                    <input type="number" id="riskPct" value="2">
-                </div>
-                <div class="input-group">
-                    <label>진입-손절 폭 (%)</label>
-                    <input type="number" id="gapPct" placeholder="예: 5">
-                </div>
-            </div>
-            <button onclick="calculatePosition()">적정 비중 계산</button>
-            
-            <div class="result-box" id="posResult" style="display:none;">
-                <div class="result-item"><span>적정 투입 금액:</span> <span class="highlight" id="resAmount">0</span></div>
-                <div class="result-item"><span>포트폴리오 비중:</span> <span class="highlight" id="resWeight">0%</span></div>
-                <div class="result-item"><span>최대 손실 예상액:</span> <span class="highlight" style="color:#ff5252;" id="resLoss">0</span></div>
-            </div>
+        <div class="card half">
+            <h2>💡 설명</h2>
+            <p style="line-height:1.6; color:#a0a0a0;">
+                이 계산기는 <b>켈리 공식(Kelly Criterion)</b>을 변형하여, 1회 매매 시 전체 자본의 일정 비율(보통 1~2%)만 리스크에 노출되도록 설계되었어.<br><br>
+                손절폭이 깊을수록 투입 비중을 줄여서 자산을 방어하는 게 퀀트 투자의 핵심이야.
+            </p>
         </div>
     </div>
 
     <script>
-        function calculateTargets() {
-            const buy = parseFloat(document.getElementById('buyPrice').value);
-            const target = parseFloat(document.getElementById('targetPct').value) / 100;
-            const stop = parseFloat(document.getElementById('stopPct').value) / 100;
-
-            if(!buy) return alert("매수가를 입력해줘!");
-
-            document.getElementById('resTarget').innerText = (buy * (1 + target)).toLocaleString(undefined, {maximumFractionDigits: 2});
-            document.getElementById('resStop').innerText = (buy * (1 - stop)).toLocaleString(undefined, {maximumFractionDigits: 2});
-            document.getElementById('resRatio').innerText = (target / stop).toFixed(2);
-            document.getElementById('targetResult').style.display = 'block';
-        }
-
-        function calculatePosition() {
-            const cap = parseFloat(document.getElementById('totalCap').value);
-            const risk = parseFloat(document.getElementById('riskPct').value) / 100;
-            const gap = parseFloat(document.getElementById('gapPct').value) / 100;
-
-            if(!cap || !gap) return alert("자본금과 손절 폭을 입력해줘!");
-
-            const riskAmount = cap * risk;
-            const investAmount = riskAmount / gap;
-            const weight = (investAmount / cap) * 100;
-
-            document.getElementById('resAmount').innerText = Math.floor(investAmount).toLocaleString() + " 원";
-            document.getElementById('resWeight').innerText = weight.toFixed(1) + "%";
-            document.getElementById('resLoss').innerText = Math.floor(riskAmount).toLocaleString() + " 원";
-            document.getElementById('posResult').style.display = 'block';
+        function calculate() {
+            const cap = document.getElementById('capital').value;
+            const stop = document.getElementById('stopLoss').value;
+            const riskPerTrade = cap * 0.02; // 2% 리스크 제한
+            const positionSize = riskPerTrade / (stop / 100);
+            document.getElementById('resText').innerHTML = 
+                `<strong>적정 투입 금액:</strong> ${Math.floor(positionSize).toLocaleString()}원<br>` +
+                `<strong>최대 손실 제한:</strong> ${Math.floor(riskPerTrade).toLocaleString()}원`;
         }
     </script>
 </body>
