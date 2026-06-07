@@ -1,47 +1,87 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <title>기술분석 | Advanced Chart</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markets - GlobalEdge</title>
+  <meta name="description" content="글로벌 주요 주식시장 지수 실시간 차트">
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
 </head>
 <body>
-    <div class="navbar">
-        <div class="dropdown"><a class="dropbtn">시장 ▼</a>
-            <div class="dropdown-content"><a href="index.html">시장종합</a><a href="global.html">세계지수</a></div>
-        </div>
-        <div class="dropdown"><a class="dropbtn">분석 ▼</a>
-            <div class="dropdown-content"><a href="market.html">기술분석</a><a href="analysis.html">종목진단</a></div>
-        </div>
-        <a href="news.html" class="dropbtn">뉴스</a>
-        <a href="calculator.html" class="dropbtn">계산기</a>
-    </div>
+  <header>
+    <h1>Global Markets</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="crypto.html">Crypto</a>
+      <a href="forex.html">Forex</a>
+      <a href="predict.html">Predict</a>
+      <a href="sentiment.html">Sentiment</a>
+      <a href="news.html">News</a>
+      <a href="global.html">Global</a>
+      <a href="analysis.html">Analysis</a>
+      <a href="calculator.html">Calculator</a>
+    </nav>
+  </header>
 
-    <div class="dashboard">
-        <div class="card" style="min-height: 850px;">
-            <h2>📈 인터랙티브 기술분석 차트</h2>
-            <div id="tech-chart"></div>
-        </div>
-    </div>
-
-    <script src="https://s3.tradingview.com/tv.js"></script>
-    <script type="text/javascript">
+  <main>
+    <section>
+      <h2>S&P 500 실시간 차트</h2>
+      <div id="sp500-chart"></div>
+      <script>
         new TradingView.widget({
-            "container_id": "tech-chart",
-            "width": "100%",
-            "height": "800",
-            "symbol": "NASDAQ:AAPL",
-            "interval": "D",
-            "timezone": "Asia/Seoul",
-            "theme": "dark",
-            "style": "1",
-            "locale": "kr",
-            "toolbar_bg": "#131722",
-            "allow_symbol_change": true, // 검색창 활성화
-            "details": true,            // 상세 정보 표시
-            "calendar": true,           // 경제 캘린더 표시
-            "hotlist": true             // 인기 종목 리스트 표시
+          "width": "100%",
+          "height": 500,
+          "symbol": "INDEX:SPX",
+          "interval": "60",
+          "timezone": "Asia/Seoul",
+          "theme": "dark",
+          "style": "1",
+          "locale": "kr",
+          "container_id": "sp500-chart"
         });
-    </script>
+      </script>
+    </section>
+
+    <section>
+      <h2>Nasdaq 실시간 차트</h2>
+      <div id="nasdaq-chart"></div>
+      <script>
+        new TradingView.widget({
+          "width": "100%",
+          "height": 500,
+          "symbol": "NASDAQ:IXIC",
+          "interval": "60",
+          "timezone": "Asia/Seoul",
+          "theme": "dark",
+          "style": "1",
+          "locale": "kr",
+          "container_id": "nasdaq-chart"
+        });
+      </script>
+    </section>
+
+    <section>
+      <h2>Nikkei 225 실시간 차트</h2>
+      <div id="nikkei-chart"></div>
+      <script>
+        new TradingView.widget({
+          "width": "100%",
+          "height": 500,
+          "symbol": "INDEX:NKY",
+          "interval": "60",
+          "timezone": "Asia/Seoul",
+          "theme": "dark",
+          "style": "1",
+          "locale": "kr",
+          "container_id": "nikkei-chart"
+        });
+      </script>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 GlobalEdge. All rights reserved.</p>
+  </footer>
 </body>
 </html>
