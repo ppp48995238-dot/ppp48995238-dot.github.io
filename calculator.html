@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="style.css"><title>Calculator</title></head>
+<body>
+<div class="header"><h1>Investment Tools</h1></div>
+<div class="tabs">
+    <a href="index.html" class="tab-link">홈</a>
+    <a href="market.html" class="tab-link">시장분석</a>
+    <a href="crypto.html" class="tab-link">코인</a>
+    <a href="calculator.html" class="tab-link">계산기</a>
+</div>
+<div class="card">
+    <h2>💰 수익률 계산기</h2>
+    <input type="number" id="buy" placeholder="매수가">
+    <input type="number" id="qty" placeholder="수량">
+    <button onclick="calc()">계산</button>
+    <p id="res"></p>
+</div>
+<script>
+function calc() {
+    let total = document.getElementById('buy').value * document.getElementById('qty').value;
+    document.getElementById('res').innerText = "총 투자금: " + total.toLocaleString() + "원";
+}
+</script>
+</body>
+</html>
